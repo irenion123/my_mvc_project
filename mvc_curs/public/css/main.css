@@ -1,0 +1,155 @@
+* {
+    box-sizing: border-box;
+}
+
+.btnmar {
+    margin-top: 0px; 
+}
+
+
+.letter {
+    color: #F9D146;
+   
+}
+
+
+.author_text {
+    font-size: 15px;
+    font-family: 'Montserrat';
+}
+
+.shadow-md {
+    box-shadow: 0 0.250rem 0.5rem rgba(0, 0, 0, 0.08) !important;
+}
+
+body {
+    background-color: #fff;
+    font-family: 'Jura', sans-serif;
+    margin: 0;
+    padding:0;
+}
+
+header {
+    background-color: #fff;
+    color: #ffffff;
+    font-family: 'Jura', sans-serif;
+    box-shadow: 0 0.5rem 1rem rgba(0,0,0,.05), inset 0 -1px 0 rgba(0,0,0,.1);
+    
+}
+
+a, .tel {
+    color: blue;
+    line-height: 1;
+    text-decoration:none;
+    cursor: pointer;
+    position:relative;
+}
+.tel:hover, a:hover {
+    text-decoration: underline;
+    color: darkblue;
+}
+
+.cont {
+    text-align: left;
+    margin: 5px;
+    border-radius: 250px;
+}
+
+.pr {
+    width: 350px;
+}
+
+.pr:hover {
+    cursor: pointer;
+}
+
+.book-image {
+    padding-bottom: 100%;
+
+    border-radius: 10px;
+}
+
+
+
+
+.name-prepod {
+    font-size: 24px;
+    color: black;  
+    font-family: 'Jura', sans-serif;
+}
+.name-prepod:hover {
+    text-decoration: none !important;
+    color:black;
+}
+
+.contel {
+    font-size: 30px;
+    color: black;  
+    font-family: 'Jura', sans-serif;
+}
+
+.bt:focus {
+    outline: 1px dotted;
+    outline: 5px auto;
+}
+
+.sld {
+    font-size: 30px;
+    text-align: center;
+    font-family: 'Jura', sans-serif;
+}
+
+.hr {
+    margin: 0; 
+    padding: 4px; 
+}
+
+.lnk-item {
+    display: inline;  
+    margin-right: 6px;
+    padding: 3px;
+}
+
+.lnk-link, .nav-link {
+    text-decoration: none;
+    font-size: 25px; 
+    color: #000; 
+    font-family: 'Jura', bold;
+    transition: all 0.3s ease-in;
+}
+
+.lnk-link:hover, .nav-link:hover {
+    text-decoration: none;
+    color: #fff;
+    /* padding: 4px; */
+    border-radius: 4px;
+    border: none;
+    font-size: 25px;
+    background-color: #000;
+}
+
+.inf {
+    text-decoration: underline !important;
+}
+
+.inf:hover {
+    cursor: pointer;
+}
+
+footer {
+    background-color: #000;
+    text-align: center;
+    font-size: 15px;
+}
+.foot {
+    font-size: 18px;
+    color: #ffffff;
+    text-decoration: none !important;
+}
+.foot:hover {
+    color: #ffffff;
+}
+
+.indent {
+    text-indent: 20px;
+}
