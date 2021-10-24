@@ -13,12 +13,9 @@
         <script src="{{ asset('bootstrap-4.2.1/js/bootstrap.min.js') }}"></script>
         <meta name="viewport" content="width=device-width, initial-scale=1">
     </head>
-    <body class="">
+    <body>
+        @include('header')
         <div class="main">
-            <div>
-                @include('header')
-            </div>
-
             <div class="container mb-4 mt-4">
                  <h1>Читай. Люби. Развивайся.</h1>
             <!-- Слайдер -->
@@ -47,17 +44,15 @@
             </div>
             <!-- Курсы -->
             <div class="container mb-4 mt-4">
-                <h1><span class="letter">Н</span>аши бестселлеры.</h1></br>
-                <div class="row" style="text-align: left;">
+                <h1>Наши бестселлеры.</h1></br>
+                <div class="row">
                 </div>
             </div>
-        </div>
 
-         <div style="padding-bottom: 20px;">
-            <div class="container mt-4" id="cont">
-                <div class="row align-items-center" style="text-align: center;">    
+            <div class="container mt-4">
+                <div class="row align-items-center">    
                                             <!-- Контактные данные -->
-                    <div class="col-lg-6 col-12 align-middle" style="text-align: left;">
+                    <div class="col-lg-6 col-12 align-middle">
                         <div class="contel">
                             <p>Узнавай первым о новых книгах</p>
                             <p class="author_text">Все новинки, выпускаемые издательством, Вы сможете увидеть на нашем сайте. Мы будем писать вам раз в месяц о новинках в нашем магазине.</p>
@@ -71,11 +66,8 @@
 
                 </div>
             </div>
-        </div> 
         </div>
-        <div>
-            @include('header')
-        </div>
+        @include('footer')
     </body>
 </html>
 
