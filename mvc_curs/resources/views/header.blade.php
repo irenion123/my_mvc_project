@@ -23,16 +23,16 @@
             <!-- Меню -->
             <ul class="navbar-nav mr-auto hr">
                 <li class="lnk-item p-0">
-                    <a class="lnk-link px-2" href="index.php">Главная</a>
+                    <a class="lnk-link px-2" href="{{ url('/') }}">Главная</a>
                 </li>
                 <li class="lnk-item p-0">
-                    <a class="lnk-link px-2" href="catalog.php">Каталог</a>
+                    <a class="lnk-link px-2" href="{{ url('/books') }}">Книги</a>
                 </li>
                 <li class="lnk-item p-0">
-                    <a class="lnk-link px-2" href="authors.php">Авторы</a>
+                    <a class="lnk-link px-2" href="{{ url('/authors') }}">Авторы</a>
                 </li>
                 <li class="lnk-item p-0">
-                    <a class="lnk-link px-2" href="cont.php">Контакты</a>
+                    <a class="lnk-link px-2" href="{{ url('/contacts') }}">Контакты</a>
                 </li>
 
                 <?php if (!empty($user) && $user['Admin'] == 1) { ?>
