@@ -45,21 +45,21 @@
                             <div>
                                 <a href="#"
                                     ><img
-                                        src="img/inst.png"
+                                        src="{{ asset('icons/inst.png') }}"
                                         style="width: 35px; margin-right: 6px"
                                 /></a>
                                 <a href="#"
                                     ><img
-                                        src="img/fcbk.png"
+                                        src="{{ asset('icons/fcbk.png') }}"
                                         style="width: 35px; margin-right: 6px"
                                 /></a>
                                 <a href="#"
                                     ><img
-                                        src="img/whtspp.png"
+                                        src="{{ asset('icons/whtspp.png') }}"
                                         style="width: 37px; margin-right: 5px"
                                 /></a>
                                 <a href="#"
-                                    ><img src="img/vk.png" style="width: 37px"
+                                    ><img src="{{ asset('icons/vk.png') }}" style="width: 37px"
                                 /></a>
                             </div>
                         </div>
