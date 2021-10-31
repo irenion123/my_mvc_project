@@ -4,51 +4,25 @@
             <div class="row my-2 align-items-center">
                 <div class="col-md-2">
                     <div class="row align-items-center">
-                        <div
-                            class="col-lg-9 align-middle"
-                            style="margin-bottom: 3px"
-                        >
-                            <a
-                                class="foot"
-                                href="{{ route('home') }}"
-                                style="margin-bottom: 0rem"
-                                >Главная</a
-                            >
+                        <div class="col-lg-9 align-middle">
+                            <a class="foot" href="{{ route('home') }}">Главная</a>
                         </div>
                     </div>
                     <div class="row align-items-center">
                         <div class="col-lg-9 align-middle">
-                            <a
-                                class="foot"
-                                href="{{ route('books') }}"
-                                style="margin-bottom: 0rem"
-                                >Книги</a
-                            >
+                            <a class="foot" href="{{ route('books') }}">Книги</a>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-2">
                     <div class="row align-items-center">
-                        <div
-                            class="col-lg-9 align-middle"
-                            style="margin-bottom: 3px"
-                        >
-                            <a
-                                class="foot"
-                                href="{{ route('authors') }}"
-                                style="margin-bottom: 0rem"
-                                >Авторы</a
-                            >
+                        <div class="col-lg-9 align-middle">
+                            <a class="foot" href="{{ route('authors') }}">Авторы</a>
                         </div>
                     </div>
                     <div class="row align-items-center">
                         <div class="col-lg-9 align-middle">
-                            <a
-                                class="foot"
-                                href="{{ route('contacts') }}"
-                                style="margin-bottom: 0rem"
-                                >Контакты</a
-                            >
+                            <a class="foot" href="{{ route('contacts') }}">Контакты</a>
                         </div>
                     </div>
                 </div>
