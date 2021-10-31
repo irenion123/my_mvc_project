@@ -8,13 +8,13 @@
         <div class="carousel-inner">
 
             <div class="carousel-item active">
-                <img src="slider/1.jpg" class="d-block w-100" alt="...">
+                <img src="{{ asset('imgs/slider/1.jpg') }}" class="d-block w-100" alt="...">
             </div>
             <div class="carousel-item">
-                <img src="slider/2.jpg" class="d-block w-100" alt="...">
+                <img src="{{ asset('imgs/slider/2.jpg') }}" class="d-block w-100" alt="...">
             </div>
             <div class="carousel-item">
-                <img src="slider/3.jpg" class="d-block w-100" alt="...">
+                <img src="{{ asset('imgs/slider/3.jpg') }}" class="d-block w-100" alt="...">
             </div>
         </div>
         <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
@@ -45,7 +45,7 @@
         </div> 
         <!-- Карта -->
         <div class="col-lg-6 col-12 align-middle">
-            <img src="slider/biblioteka.png" width="550">
+            <img src="{{ asset('imgs/slider/biblioteka.png') }}" width="550">
         </div>
     </div>
 </div>
