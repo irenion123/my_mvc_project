@@ -1,10 +1,10 @@
 <header id="header">
     <nav class="navbar navbar-expand-lg navbar-light">
         <!-- Логотип -->
-        <a class="navbar-brand" href="index.php">
+        <a class="navbar-brand" href="{{ route('home') }}">
             <img
                 class="logo2"
-                src="img/logo.png"
+                src="{{ asset('icons/logo.png') }}"
                 style="width: 100px; margin: 0px; border: 0px"
             />
         </a>
@@ -23,16 +23,16 @@
             <!-- Меню -->
             <ul class="navbar-nav mr-auto hr">
                 <li class="lnk-item p-0">
-                    <a class="lnk-link px-2" href="{{ action([ App\Http\Controllers\HomePageController::class, 'index' ]) }}">Главная</a>
+                    <a class="lnk-link px-2" href="{{ route('home') }}">Главная</a>
                 </li>
                 <li class="lnk-item p-0">
-                    <a class="lnk-link px-2" href="{{ action([ App\Http\Controllers\BooksPageController::class, 'index' ]) }}">Книги</a>
+                    <a class="lnk-link px-2" href="{{ route('books') }}">Книги</a>
                 </li>
                 <li class="lnk-item p-0">
-                    <a class="lnk-link px-2" href="{{ action([ App\Http\Controllers\AuthorsPageController::class, 'index' ]) }}">Авторы</a>
+                    <a class="lnk-link px-2" href="{{ route('authors') }}">Авторы</a>
                 </li>
                 <li class="lnk-item p-0">
-                    <a class="lnk-link px-2" href="{{ action([ App\Http\Controllers\ContactsPageController::class, 'index' ]) }}">Контакты</a>
+                    <a class="lnk-link px-2" href="{{ route('contacts') }}">Контакты</a>
                 </li>
 
                 <?php if (!empty($user) && $user['Admin'] == 1) { ?>

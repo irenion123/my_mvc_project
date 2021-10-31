@@ -10,7 +10,7 @@
                         >
                             <a
                                 class="foot"
-                                href="{{ action([ App\Http\Controllers\HomePageController::class, 'index' ]) }}"
+                                href="{{ route('home') }}"
                                 style="margin-bottom: 0rem"
                                 >Главная</a
                             >
@@ -20,7 +20,7 @@
                         <div class="col-lg-9 align-middle">
                             <a
                                 class="foot"
-                                href="{{ action([ App\Http\Controllers\BooksPageController::class, 'index' ]) }}"
+                                href="{{ route('books') }}"
                                 style="margin-bottom: 0rem"
                                 >Книги</a
                             >
@@ -35,7 +35,7 @@
                         >
                             <a
                                 class="foot"
-                                href="{{ action([ App\Http\Controllers\AuthorsPageController::class, 'index' ]) }}"
+                                href="{{ route('authors') }}"
                                 style="margin-bottom: 0rem"
                                 >Авторы</a
                             >
@@ -45,7 +45,7 @@
                         <div class="col-lg-9 align-middle">
                             <a
                                 class="foot"
-                                href="{{ action([ App\Http\Controllers\ContactsPageController::class, 'index' ]) }}"
+                                href="{{ route('contacts') }}"
                                 style="margin-bottom: 0rem"
                                 >Контакты</a
                             >

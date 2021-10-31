@@ -5,6 +5,7 @@ use App\Http\Controllers\HomePageController;
 use App\Http\Controllers\BooksPageController;
 use App\Http\Controllers\AuthorsPageController;
 use App\Http\Controllers\ContactsPageController;
+use App\Http\Controllers\AuthPageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,10 +18,18 @@ use App\Http\Controllers\ContactsPageController;
 |
 */
 
-Route::get('/', [HomePageController::class, 'index']);
-Route::get('/books', [ BooksPageController::class, 'index' ]);
-Route::get('/authors', [ AuthorsPageController::class, 'index' ]);
-Route::get('/contacts',  [ ContactsPageController::class, 'index' ]);
+Route::get(
+    '/', [HomePageController::class, 'index']
+)->name('home');
+Route::get(
+    '/books', [ BooksPageController::class, 'index' ]
+)->name('books');
+Route::get(
+    '/authors', [ AuthorsPageController::class, 'index' ]
+)->name('authors');
+Route::get(
+    '/contacts', [ ContactsPageController::class, 'index' ]
+)->name('contacts');
 Route::get('/auth',  function () {
     return view('auth_page');
 });
