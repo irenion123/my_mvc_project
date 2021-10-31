@@ -23,16 +23,16 @@
             <!-- Меню -->
             <ul class="navbar-nav mr-auto hr">
                 <li class="lnk-item p-0">
-                    <a class="lnk-link px-2" href="{{ url('/') }}">Главная</a>
+                    <a class="lnk-link px-2" href="{{ action([ App\Http\Controllers\HomePageController::class, 'index' ]) }}">Главная</a>
                 </li>
                 <li class="lnk-item p-0">
-                    <a class="lnk-link px-2" href="{{ url('/books') }}">Книги</a>
+                    <a class="lnk-link px-2" href="{{ action([ App\Http\Controllers\BooksPageController::class, 'index' ]) }}">Книги</a>
                 </li>
                 <li class="lnk-item p-0">
-                    <a class="lnk-link px-2" href="{{ url('/authors') }}">Авторы</a>
+                    <a class="lnk-link px-2" href="{{ action([ App\Http\Controllers\AuthorsPageController::class, 'index' ]) }}">Авторы</a>
                 </li>
                 <li class="lnk-item p-0">
-                    <a class="lnk-link px-2" href="{{ url('/contacts') }}">Контакты</a>
+                    <a class="lnk-link px-2" href="{{ action([ App\Http\Controllers\ContactsPageController::class, 'index' ]) }}">Контакты</a>
                 </li>
 
                 <?php if (!empty($user) && $user['Admin'] == 1) { ?>
