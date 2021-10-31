@@ -30,7 +30,8 @@ Route::get(
 Route::get(
     '/contacts', [ ContactsPageController::class, 'index' ]
 )->name('contacts');
-Route::get('/auth',  function () {
-    return view('auth_page');
-});
+Route::get(
+    '/auth', [ AuthPageController::class, 'index' ]
+)->name('auth');
+
  

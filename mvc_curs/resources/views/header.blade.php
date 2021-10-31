@@ -70,7 +70,7 @@
                 <?php if (!empty($user)) { ?>
                 <a class="lnk-link px-2" href="profile.php">Профиль</a>
                 <?php } else { ?>
-                <a class="lnk-link px-2" href="sign_in.php" style=""
+                <a class="lnk-link px-2" href="{{ route('auth') }}"
                     >Вход/Регистрация</a
                 >
                 <?php } ?>
