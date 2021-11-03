@@ -30,8 +30,22 @@ Route::get(
 Route::get(
     '/contacts', [ ContactsPageController::class, 'index' ]
 )->name('contacts');
+
 Route::get(
     '/auth', [ AuthPageController::class, 'index' ]
 )->name('auth');
+Route::post(
+    '/auth', [AuthPageController::class, 'auth']
+)->name('auth_post');
 
+Route::prefix('admin')->group(function() {
+    Route::get(
+        '/temp',
+        [BooksPageController::class, 'index']
+    )->middleware('auth');
+    Route::get(
+        '/test',
+        [BooksPageController::class, 'index']
+    )->middleware('auth');
+});
  

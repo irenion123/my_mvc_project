@@ -67,13 +67,11 @@
             </ul>
 
             <div>
-                <?php if (!empty($user)) { ?>
+                @if (Auth::check())
                 <a class="lnk-link px-2" href="profile.php">Профиль</a>
-                <?php } else { ?>
-                <a class="lnk-link px-2" href="{{ route('auth') }}"
-                    >Вход/Регистрация</a
-                >
-                <?php } ?>
+                @else 
+                <a class="lnk-link px-2" href="{{ route('auth') }}" >Вход/Регистрация</a>
+                @endif
             </div>
         </div>
     </nav>
