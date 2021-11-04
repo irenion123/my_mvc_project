@@ -45,7 +45,7 @@
         </div> 
         <!-- Карта -->
         <div class="col-lg-6 col-12 align-middle">
-            <img src="{{ asset('imgs/slider/biblioteka.png') }}" width="550">
+            <img src="{{ asset('imgs/slider/biblioteka.png') }}" width="100%">
         </div>
     </div>
 </div>
