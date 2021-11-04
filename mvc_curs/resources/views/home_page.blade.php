@@ -31,6 +31,7 @@
 <div class="container mb-4 mt-4">
     <h1>Наши бестселлеры.</h1></br>
     <div class="row">
+    @each('components.book', $bestSellers, 'book')
     </div>
 </div>
 
