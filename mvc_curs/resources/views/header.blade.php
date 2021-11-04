@@ -64,15 +64,15 @@
                     </div>
                 </li>
                 <?php } ?>
+                <li class="lnk-item p-0">
+                    @if (Auth::check())
+                    <a class="lnk-link px-2" href="profile.php">Профиль</a>
+                    @else 
+                    <a class="lnk-link px-2" href="{{ route('auth') }}" >Вход/Регистрация</a>
+                    @endif
+                </li>
             </ul>
 
-            <div>
-                @if (Auth::check())
-                <a class="lnk-link px-2" href="profile.php">Профиль</a>
-                @else 
-                <a class="lnk-link px-2" href="{{ route('auth') }}" >Вход/Регистрация</a>
-                @endif
-            </div>
         </div>
     </nav>
 </header>
