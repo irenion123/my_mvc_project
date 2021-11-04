@@ -35,7 +35,7 @@
                     <a class="lnk-link px-2" href="{{ route('contacts') }}">Контакты</a>
                 </li>
 
-                <?php if (!empty($user) && $user['Admin'] == 1) { ?>
+                @if (Auth::check() && Auth::user()['is_admin'] === 1)
                 <li class="dropdown">
                     <a
                         class="dropdown-toggle lnk-link px-2"
@@ -63,7 +63,7 @@
                         >
                     </div>
                 </li>
-                <?php } ?>
+                @endif
                 <li class="lnk-item p-0">
                     @if (Auth::check())
                     <a class="lnk-link px-2" href="profile.php">Профиль</a>
