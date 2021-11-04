@@ -64,7 +64,9 @@
                     </div>
                 </li>
                 @endif
-                <li class="lnk-item p-0">
+            </ul>
+            <ul class="p-0">
+                <li class="lnk-item">
                     @if (Auth::check())
                     <a class="lnk-link px-2" href="profile.php">Профиль</a>
                     @else 
