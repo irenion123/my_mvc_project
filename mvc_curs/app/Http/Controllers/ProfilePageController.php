@@ -10,10 +10,9 @@ class ProfilePageController extends Controller
 
     public function index()
     {
-        $reservedBooks = Book::whereIn(
-            'book_id',
+        $reservedBooks = Book::getBooksById(
             Auth::user()->reserved_books
-        )->get();
+        );
         return view(
             'profile_page',
             [ 'reservedBooks' => $reservedBooks ]
