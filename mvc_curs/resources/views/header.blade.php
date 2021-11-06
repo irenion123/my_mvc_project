@@ -68,7 +68,7 @@
             <ul class="p-0">
                 <li class="lnk-item">
                     @if (Auth::check())
-                    <a class="lnk-link px-2" href="profile.php">Профиль</a>
+                    <a class="lnk-link px-2" href="{{ route('profile') }}">Профиль</a>
                     @else 
                     <a class="lnk-link px-2" href="{{ route('auth') }}" >Вход/Регистрация</a>
                     @endif

@@ -5,6 +5,7 @@ use App\Http\Controllers\HomePageController;
 use App\Http\Controllers\BooksPageController;
 use App\Http\Controllers\AuthorsPageController;
 use App\Http\Controllers\ContactsPageController;
+use App\Http\Controllers\ProfilePageController;
 use App\Http\Controllers\AuthPageController;
 
 /*
@@ -30,6 +31,9 @@ Route::get(
 Route::get(
     '/contacts', [ ContactsPageController::class, 'index' ]
 )->name('contacts');
+Route::get(
+    '/profile', [ ProfilePageController::class, 'index' ]
+)->name('profile');
 
 /**
  * Auth роуты
