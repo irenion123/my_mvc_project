@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Book extends Model
 {
@@ -26,6 +27,56 @@ class Book extends Model
             ->join('books_has_authors', 'books.book_id', 'books_has_authors.book_id')
             ->join('authors', 'authors.author_id', 'books_has_authors.author_id')
             ->get([ '*', 'authors.fullname as author_fullname' ]);
+    }
+
+    public function getAuthorNameAttribute() {
+        $array = DB::select(
+            '
+                select group_concat(a.fullname separator \', \') as fullname
+                from books_has_authors as bhs
+                left join authors as a on bhs.author_id = a.author_id
+                where bhs.book_id = :id
+                group by bhs.book_id
+            ',
+            [':id' => $this->book_id]
+        );
+
+        if (empty($array)) return null;
+
+        return array_column($array, 'fullname')[0];
+    }
+
+    public function getTranslatorNameAttribute() {
+        $array = DB::select(
+            '
+                select group_concat(t.fullname separator \', \') as fullname
+                from books_has_translators as bht
+                left join translators as t on bht.translator_id = t.translator_id
+                where bht.book_id = :id
+                group by bht.book_id
+            ',
+            [':id' => $this->book_id]
+        );
+
+        if (empty($array)) return null;
+
+        return array_column($array, 'fullname')[0];
+    }
+
+    public static function reserveBook($bookId, $userId)
+    {
+        DB::insert(
+            'insert into users_have_books values (:user_id, :book_id)',
+            [ ':user_id' => $userId, ':book_id' => $bookId ]
+        );
+    }
+
+    public static function removeReservation($bookId, $userId)
+    {
+        DB::delete(
+            'delete from users_have_books where user_id = :user_id and book_id = :book_id',
+            [ ':user_id' => $userId, ':book_id' => $bookId ]
+        );
     }
 }
 
