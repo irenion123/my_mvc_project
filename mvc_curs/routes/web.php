@@ -22,9 +22,16 @@ use App\Http\Controllers\AuthPageController;
 Route::get(
     '/', [HomePageController::class, 'index']
 )->name('home');
+
+/** Книги */
 Route::get(
     '/books', [ BooksPageController::class, 'index' ]
 )->name('books');
+Route::get(
+    '/books/{book}/', [ BooksPageController::class, 'bookPage' ]
+)->name('single_book');
+
+
 Route::get(
     '/authors', [ AuthorsPageController::class, 'index' ]
 )->name('authors');

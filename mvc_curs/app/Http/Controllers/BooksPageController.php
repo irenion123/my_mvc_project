@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Book;
+
 class BooksPageController extends Controller
 {
 
@@ -15,6 +17,11 @@ class BooksPageController extends Controller
 
         // Рендерим
         return view('books_page');
+    }
+
+    public function bookPage(Book $book)
+    {
+        return view('single_book_page', ['book' => $book]);
     }
 
 }
