@@ -31,12 +31,18 @@ Route::get(
     '/contacts', [ ContactsPageController::class, 'index' ]
 )->name('contacts');
 
+/**
+ * Auth роуты
+ */
 Route::get(
     '/auth', [ AuthPageController::class, 'index' ]
 )->name('auth');
 Route::post(
     '/auth', [AuthPageController::class, 'auth']
 )->name('auth_post');
+Route::get(
+    '/logout', [ AuthPageController::class, 'logout' ]
+)->name('logout');
 
 Route::prefix('admin')->group(function() {
     Route::get(

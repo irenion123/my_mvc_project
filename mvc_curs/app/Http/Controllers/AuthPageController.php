@@ -30,6 +30,13 @@ class AuthPageController extends Controller
         }
     }
 
+    public function logout()
+    {
+        Auth::logout();
+        request()->session()->invalidate();
+        return redirect('/');
+    }
+
     public function signUp()
     {
         $username = request('username');
