@@ -1,5 +1,5 @@
 <div class="col-sm-6 col-md-4 col-lg-3 col-12 pr d-flex flex-column justify-content-between" style="margin-bottom: 30px;">
-    <a class="name-prepod" href="view_book.php?book_id={{ $book['book_id'] }}">
+    <a class="name-prepod" href="{{ route('single_book', ['book' => $book->book_id]) }}">
     <div class="book-image bg-white" style="background: url('{{ asset($book['cover_image']) }}'); background-size: contain; background-position: center;"></div>
         <hr style="width: 100%; border: none; background-color: #000; height: 2px;">
         <span>{{ $book['title'] }}</span></br>
