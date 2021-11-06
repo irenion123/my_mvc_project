@@ -13,7 +13,7 @@
             <button class="btn btn-light" onclick="addReservation('{{ $book['book_id'] }}', this)">Отложить</button>
             @endif
         @else
-        <a href="/sign_in.php" class="btn btn-light">Отложить</a>
+        <a href="{{ route('auth') }}" class="btn btn-light">Отложить</a>
         @endif
     </div>
 </div>
