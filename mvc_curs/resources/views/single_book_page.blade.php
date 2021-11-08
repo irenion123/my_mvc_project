@@ -1,7 +1,7 @@
 @extends('main')
 
 @section('main')
-<div class="container">
+<div class="mt-5 container">
     <div class="row">
         <!-- Картинка -->
         <div class="col-lg-6 col-12">
