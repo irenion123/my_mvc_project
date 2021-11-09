@@ -30,6 +30,13 @@ class Book extends Model
             ->get([ '*', 'authors.fullname as author_fullname' ]);
     }
 
+    public static function getBookByCategoryId(int $categoryId)
+    {
+        return self::query()
+            ->where('category_id', $categoryId)
+            ->get();
+    }
+
     public function getAuthorNameAttribute() {
         $array = DB::select(
             '
