@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Book;
+use App\Models\Category;
 use Illuminate\Support\Facades\Auth;
 
 class BooksPageController extends Controller
@@ -11,13 +12,19 @@ class BooksPageController extends Controller
     public function index()
     {
 
-        // Получаем несколько бестселлеров
-        //
-        // Получаем картинки для карусели
+        $categoriesModel = Category::all();
+
+        $categories = [];
+        foreach ($categoriesModel as $category) {
+            $category['books'] = Book::getBookByCategoryId($category->category_id);
+            $categories[] = $category;
+        }
         //
 
         // Рендерим
-        return view('books_page');
+        return view('books_page', [
+            'categories' => $categories
+        ]);
     }
 
     public function bookPage(Book $book)
