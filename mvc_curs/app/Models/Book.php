@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
+use App\Models\User;
 
 class Book extends Model
 {
@@ -65,6 +66,10 @@ class Book extends Model
 
     public static function reserveBook($bookId, $userId)
     {
+        $user = User::where('user_id', $userId)->first();
+        if (in_array($bookId, $user->reserved_books)) {
+            return;
+        }
         DB::insert(
             'insert into users_have_books values (:user_id, :book_id)',
             [ ':user_id' => $userId, ':book_id' => $bookId ]

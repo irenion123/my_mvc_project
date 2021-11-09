@@ -10,9 +10,9 @@
                 <div class="btnmar">
                     @if (Auth::check())
                         @if (in_array($book['book_id'], Auth::user()->reservedBooks))
-                            <button class="btn btn-light pl-5 pr-5 mt-3" onclick="removeReservation('<?= $book["id_Book"] ?>', this)">Убрать</button>
+                            <button class="btn btn-light pl-5 pr-5 mt-3" onclick="removeReservation('{{ $book->book_id }}', this)">Убрать</button>
                         @else
-                            <button class="btn btn-light pl-5 pr-5 mt-3" onclick="addReservation('<?= $book["id_Book"] ?>', this)">Отложить</button>
+                            <button class="btn btn-light pl-5 pr-5 mt-3" onclick="addReservation('{{ $book->book_id }}', this)">Отложить</button>
                         @endif
                     @else
                         <a href="/sign_in.php" class="btn btn-light">Отложить</a>

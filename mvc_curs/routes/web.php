@@ -24,12 +24,17 @@ Route::get(
 )->name('home');
 
 /** Книги */
-Route::get(
-    '/books', [ BooksPageController::class, 'index' ]
-)->name('books');
-Route::get(
-    '/books/{book}/', [ BooksPageController::class, 'bookPage' ]
-)->name('single_book');
+Route::prefix('/books')->group(function(){
+    Route::get('/', [BooksPageController::class, 'index'])->name('books');
+    Route::get('/{book}/', [BooksPageController::class, 'bookPage'])
+        ->name('single_book');
+    Route::middleware('auth')->group(function (){
+        Route::get('/{book}/reserve', [BooksPageController::class, 'addReservation'])
+            ->name('add_reservation');
+        Route::get('/{book}/unreserve', [BooksPageController::class, 'removeReservation'])
+            ->name('remove_reservation');
+    });
+});
 
 
 Route::get(

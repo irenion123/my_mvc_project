@@ -15,7 +15,9 @@
     <div class="container mb-4 mt-4">
         <h1><span class="letter">К</span>ниги на полке.</h1></br>
         <div class="row" style="text-align: left;">
-        @each('components.book', $reservedBooks, 'book')
+        @foreach( $reservedBooks as $book )
+            @include('components.book', [ 'book' => $book, 'removable' => true ])
+        @endforeach
         </div>
     </div>
 </div>
