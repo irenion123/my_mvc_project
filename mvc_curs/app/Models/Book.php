@@ -6,6 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 use App\Models\User;
 
+use App\Models\Category;
+use App\Models\Cycle;
+use App\Models\Seria;
+use App\Models\Format;
+
 class Book extends Model
 {
     protected $table = 'books';
@@ -69,6 +74,30 @@ class Book extends Model
         if (empty($array)) return null;
 
         return array_column($array, 'fullname')[0];
+    }
+
+    public function getSeriaNameAttribute()
+    {
+        $seria = Seria::find($this->seria_id);
+        return $seria->title;
+    }
+
+    public function getCycleNameAttribute()
+    {
+        $cycle = Cycle::find($this->cycle_id);
+        return $cycle->title;
+    }
+
+    public function getCategoryNameAttribute()
+    {
+        $category = Category::find($this->category_id);
+        return $category->title;
+    }
+
+    public function getFormatNameAttribute()
+    {
+        $format = Format::find($this->format_id);
+        return $format->name;
     }
 
     public static function reserveBook($bookId, $userId)
