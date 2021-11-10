@@ -10,6 +10,11 @@ html, body {
     margin-top: 0px; 
 }
 
+.custom-table td, .custom-table td {
+    margin: 0px;
+    padding: 0.25rem 0.75rem;
+}
+
 
 .letter {
     color: #F9D146;
