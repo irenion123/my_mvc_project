@@ -76,6 +76,20 @@ a, .tel {
     padding-bottom: 100%;
 
     border-radius: 10px;
+
+    transition: transform 200ms;
+}
+
+.book-view:hover .book-image {
+    transform: scale(1.1);
+}
+
+.book-view hr {
+    background: linear-gradient(to right, transparent, #adadad, transparent);
+    transition: background-position 200ms ease-out;  
+}
+.book-view:hover hr {
+    background: linear-gradient(to right, transparent, #f9d146, transparent);
 }
 
 
