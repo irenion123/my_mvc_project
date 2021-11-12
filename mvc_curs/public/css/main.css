@@ -92,8 +92,20 @@ a, .tel {
     background: linear-gradient(to right, transparent, #f9d146, transparent);
 }
 
+.author-view .author-image {
+    padding-bottom: 100%;
+    border-radius: 10px;
+    transition: transform 200ms;
+}
 
+.author-view .author-name {
+    font-size: 1.5rem;
+    cursor: default;
+}
 
+.author-view:hover .author-image {
+    transform: scale(1.05);
+}
 
 .name-prepod {
     font-size: 24px;
