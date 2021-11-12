@@ -79,24 +79,28 @@ class Book extends Model
     public function getSeriaNameAttribute()
     {
         $seria = Seria::find($this->seria_id);
+        if (empty($seria)) return null;
         return $seria->title;
     }
 
     public function getCycleNameAttribute()
     {
         $cycle = Cycle::find($this->cycle_id);
+        if (empty($cycle)) return null;
         return $cycle->title;
     }
 
     public function getCategoryNameAttribute()
     {
         $category = Category::find($this->category_id);
+        if (empty($category)) return null;
         return $category->title;
     }
 
     public function getFormatNameAttribute()
     {
         $format = Format::find($this->format_id);
+        if (empty($format)) return null;
         return $format->name;
     }
 
