@@ -37,9 +37,14 @@ Route::prefix('/books')->group(function(){
 });
 
 
+/** Авторы */
 Route::get(
     '/authors', [ AuthorsPageController::class, 'index' ]
 )->name('authors');
+Route::get(
+    '/authors/{author}', [AuthorsPageController::class, 'authorPage']
+)->name('single_author');
+
 Route::get(
     '/contacts', [ ContactsPageController::class, 'index' ]
 )->name('contacts');

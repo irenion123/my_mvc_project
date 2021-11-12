@@ -17,4 +17,12 @@ class AuthorsPageController extends Controller
         ]);
     }
 
+    public function authorPage(Author $author)
+    {
+        return view(
+            'single_author_page',
+            ['author' => $author]
+        );
+    }
+
 }
