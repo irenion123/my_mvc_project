@@ -30,9 +30,7 @@ class Book extends Model
     {
         return self::query()
             ->whereIn('books.book_id', $ids)
-            ->join('books_has_authors', 'books.book_id', 'books_has_authors.book_id')
-            ->join('authors', 'authors.author_id', 'books_has_authors.author_id')
-            ->get([ '*', 'authors.fullname as author_fullname' ]);
+            ->get();
     }
 
     public static function getBookByCategoryId(int $categoryId)
