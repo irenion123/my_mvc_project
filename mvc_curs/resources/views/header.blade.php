@@ -48,7 +48,7 @@
                         >Администрирование</a
                     >
                     <div class="dropdown-menu" aria-labelledby="asortiDropdown">
-                        <a class="dropdown-item" href="view_add_book.php"
+                        <a class="dropdown-item" href="{{ route('manage_books') }}"
                             >Добавить книгу</a
                         >
                         <a

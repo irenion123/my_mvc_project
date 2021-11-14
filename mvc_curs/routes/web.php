@@ -7,6 +7,7 @@ use App\Http\Controllers\AuthorsPageController;
 use App\Http\Controllers\ContactsPageController;
 use App\Http\Controllers\ProfilePageController;
 use App\Http\Controllers\AuthPageController;
+use App\Http\Controllers\ManagePageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -65,14 +66,13 @@ Route::get(
     '/logout', [ AuthPageController::class, 'logout' ]
 )->name('logout');
 
-Route::prefix('admin')->group(function() {
-    Route::get(
-        '/temp',
-        [BooksPageController::class, 'index']
-    )->middleware('auth');
-    Route::get(
-        '/test',
-        [BooksPageController::class, 'index']
-    )->middleware('auth');
-});
+Route::group(
+    [
+        'prefix' => '/manage',
+        'middleware' => ['auth', 'admin']
+    ],
+    function() {
+        Route::get('/books', [ManagePageController::class, 'manageBooks'])->name('manage_books');
+    }
+);
  
