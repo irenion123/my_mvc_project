@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Book;
 use App\Models\Category;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 
 class BooksPageController extends Controller
 {
@@ -56,6 +57,67 @@ class BooksPageController extends Controller
         } catch (\Exception $e) {
             return json_encode(['result' => false]);
         }
+    }
+
+    public function deleteBook(Book $book)
+    {
+        $result = $book->delete();
+        return json_encode(['result' => $result]);
+    }
+
+    public function addBook(Request $request)
+    {
+        $validated = $request->validate([
+            'title'           => 'required',
+            'authors_id.0'    => 'required',
+            'translators_id'  => '',
+            'category_id'     => 'required',
+            'cover_image'     => 'required',
+            'seria_id'        => '',
+            'cycle_id'        => '',
+            'number_in_cycle' => '',
+            'cover_type'      => '',
+            'isbn'            => '',
+            'ydk'             => '',
+            'bbk'             => '',
+            'age_restriction' => '',
+            'tiraj'           => '',
+            'status'          => '',
+            'format_id'       => '',
+            'publish_date'    => '',
+            'page_count'      => '',
+            'description'     => '',
+        ]);
+        $book = new Book;
+
+        $image = $request->file('cover_image');
+        $path = $image->storeAs('imgs/covers', $image->getClientOriginalName(), 'public');
+
+        $book->title           = $validated['title'];
+        // $book->authors_id      = $validated['authors_id'];
+        // $book->translators_id  = $validated['translators_id'];
+        $book->category_id     = $validated['category_id'];
+        $book->cover_image     = 'imgs/covers/' . $image->getClientOriginalName();
+        $book->seria_id        = ($request->input('seria_id') == -1) ? null : $request->input('seria_id');
+        $book->cycle_id        = ($request->input('cycle_id') == -1) ? null : $request->input('cycle_id');
+        $book->number_in_cycle = $validated['number_in_cycle'];
+        $book->cover_type      = $validated['cover_type'];
+        $book->isbn            = $validated['isbn'];
+        $book->ydk             = $validated['ydk'];
+        $book->bbk             = $validated['bbk'];
+        $book->age_restriction = $validated['age_restriction'];
+        $book->tiraj           = $validated['tiraj'];
+        $book->status          = $validated['status'];
+        $book->format_id       = $validated['format_id'];
+        $book->publish_date    = $validated['publish_date'];
+        $book->page_count      = $validated['page_count'];
+        $book->description     = $validated['description'];
+        $book->is_bestseller   = $request->input('is_bestseller', false);
+        $book->is_shown        = $request->input('is_shown', true);
+
+        $book->save();
+
+        return redirect()->route('manage_books', '#');
     }
 
 }

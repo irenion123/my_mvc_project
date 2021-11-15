@@ -35,6 +35,13 @@ Route::prefix('/books')->group(function(){
         Route::get('/{book}/unreserve', [BooksPageController::class, 'removeReservation'])
             ->name('remove_reservation');
     });
+    Route::group([ 'middleware' => ['auth', 'admin']], function(){
+        Route::post('/', [BooksPageController::class, 'addBook'])
+            ->name('add_book');
+        Route::delete('/{book}', [BooksPageController::class, 'deleteBook'])
+            ->name('delete_book');
+    }
+);
 });
 
 
