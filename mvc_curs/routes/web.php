@@ -80,6 +80,7 @@ Route::group(
     ],
     function() {
         Route::get('/books', [ManagePageController::class, 'manageBooks'])->name('manage_books');
+        Route::get('/books/{book}/', [ManagePageController::class, 'manageBooks'])->name('manage_single_book');
     }
 );
  

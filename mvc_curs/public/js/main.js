@@ -29,3 +29,11 @@ function removeReservation(bookId, button, remove = false ) {
             }
         });
 }
+
+function deleteBook(bookId) {
+    fetch('/books/' + bookId, { method: 'DELETE'})
+        .then(response => response.json())
+        .then(function(data) {
+            $('#book-view-'+bookId).remove();
+        });
+}
