@@ -56,7 +56,7 @@
             </div>
             <div class="mb-1">
                 <label class="mb-0" style="font-size: 25px">
-                    Автор<div class="btn ml-2 px-3 py-0 btn-outline-primary" onClick="{$('#author-for-copy').clone().removeAttr('id').insertAfter('#author-for-copy')}">+</div>
+                    Автор<div class="btn ml-2 px-3 py-0 btn-outline-primary cursor-pointer" onClick="{$('#author-for-copy').clone().removeAttr('id').insertAfter('#author-for-copy')}">+</div>
                 </label>
                 @foreach( old('authors_id') ?? [0] as $selectedAuthor )
                 <select class="@error('authors_id.0') is-invalid @enderror form-control mb-2" name="authors_id[]" id="author-for-copy">
@@ -74,7 +74,7 @@
             </div>
             <div class="mb-1">
                 <label class="mb-0" style="font-size: 25px">
-                    Переводчик<div class="btn ml-2 px-3 py-0 btn-outline-primary" onClick="{$('#translator-for-copy').clone().removeAttr('id').insertAfter('#translator-for-copy')}">+</div>
+                    Переводчик<div class="btn ml-2 px-3 py-0 btn-outline-primary cursor-pointer" onClick="{$('#translator-for-copy').clone().removeAttr('id').insertAfter('#translator-for-copy')}">+</div>
                 </label>
                 @foreach( old('translators_id') ?? [-1] as $selectedTranslator )
                 <select class="form-control mb-2" name="translators_id[]" id="translator-for-copy">
