@@ -38,6 +38,12 @@ html, body {
    
 }
 
+.cursor-pointer {
+    cursor: pointer;
+}
+.cursor-default {
+    cursor: default;
+}
 
 .author_text {
     font-size: 15px;

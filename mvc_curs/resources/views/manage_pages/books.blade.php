@@ -6,9 +6,14 @@
         <h2 class="text-center"> Книги </h2>
         @foreach ( $books as $book )
             <div id="book-view-{{ $book->book_id }}" class="item d-flex justify-content-between align-items-center mb-1 py-1">
-                <div>
-                    <span class="h5 item-num">{{ $book->book_id }}.</span>
-                    <span class="h4 {{ $book->title ? '' : 'text-secondary' }}"> {{ $book->title ?? 'Название отсутствует' }}</span>
+                <div class="cursor-pointer">
+                    <span class="h5 item-num cursor-default">{{ $book->book_id }}.</span>
+                    <span
+                        class="h4 cursor-pointer {{ $book->title ? '' : 'text-secondary' }}"
+                        onclick="document.location.assign('{{ route('single_book', ['book' => $book->book_id]) }}')"
+                    >
+                        {{ $book->title ?? 'Название отсутствует' }}
+                    </span>
                 </div>
                 <div class="item-control">
                     <div class="d-none d-md-flex flex-row">
@@ -36,7 +41,6 @@
         @endforeach
     </div>
     <form action="{{ route('add_book') }}#book_info"  method="post" enctype="multipart/form-data">
-        {{ print_r($errors->all()) }}
         <div class="container form-group card p-4">
             <h2 id="book_info" class="text-center pb-3">
                 {{ isset($choosen_book) ? 'Изменение книги' : 'Добавление книги' }} 
