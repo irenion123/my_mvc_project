@@ -15,6 +15,23 @@ html, body {
     padding: 0.25rem 0.75rem;
 }
 
+.item .item-num {
+    opacity: 0.5;
+}
+.item:hover .item-num {
+    opacity: 1.0;
+    font-weight: 900;
+}
+.item .item-control {
+    opacity: 0;
+    transition: opacity 150ms;
+}
+.item:hover .item-control {
+    opacity: 1;
+}
+.item:hover {
+    color: #000;
+}
 
 .letter {
     color: #F9D146;
