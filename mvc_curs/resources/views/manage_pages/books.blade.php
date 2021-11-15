@@ -1,8 +1,8 @@
 @extends('main')
 
 @section('main')
-<div class="main px-4">
-    <div class="container card p-4 mb-3">
+<div class="main px-4 pt-5">
+    <div class="container card p-4 mb-3 mt-1">
         <h2 class="text-center"> Книги </h2>
         @foreach ( $books as $book )
             <div id="book-view-{{ $book->book_id }}" class="item d-flex justify-content-between align-items-center mb-1 py-1">
