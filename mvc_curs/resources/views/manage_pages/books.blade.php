@@ -55,41 +55,85 @@
                     value="{{ $choosen_book->title ?? old('title') }}">
             </div>
             <div class="mb-1">
-                <label class="mb-0" style="font-size: 25px">
-                    Автор<div class="btn ml-2 px-3 py-0 btn-outline-primary cursor-pointer" onClick="{$('#author-for-copy').clone().removeAttr('id').insertAfter('#author-for-copy')}">+</div>
-                </label>
+                <span class="mb-1" style="font-size: 25px">
+                    <span class="">Автор</span>
+                    <button
+                        type="button"
+                        class="btn btn-outline-primary px-3 py-0"
+                        data-toggle="modal"
+                        data-target="#modalAddAuthor">Создать</button>
+                </span>
                 @foreach( old('authors_id') ?? [0] as $selectedAuthor )
-                <select class="@error('authors_id.0') is-invalid @enderror form-control mb-2" name="authors_id[]" id="author-for-copy">
-                    @foreach( $authors as $author )
-                        <option
-                            @if ($author->author_id == $selectedAuthor)
-                                selected
-                            @endif
-                            value="{{ $author->author_id }}">
-                            {{ $author->fullname }}
-                        </option>
-                    @endforeach
-                </select>
+                <div class="input-group mb-2" id="author-for-copy">
+                    <select class="@error('authors_id.0') is-invalid @enderror custom-select" name="authors_id[]">
+                        @foreach( $authors as $author )
+                            <option
+                                @if ($author->author_id == $selectedAuthor)
+                                    selected
+                                @endif
+                                value="{{ $author->author_id }}">
+                                {{ $author->fullname }}
+                            </option>
+                        @endforeach
+                    </select>
+                    @if ($loop->first)
+                    <div class="input-group-append" id="append-btn">
+                        <button
+                            class="btn btn-outline-secondary"
+                            onClick="{
+                                event.preventDefault()
+                                copy = $('#author-for-copy')
+                                    .clone()
+                                    .removeAttr('id')
+                                copy.find('#append-btn').remove()
+                                copy.insertAfter('#author-for-copy')
+                            }"
+                        >Ещё один</button>
+                    </div>
+                    @endif
+                </div>
                 @endforeach
             </div>
             <div class="mb-1">
-                <label class="mb-0" style="font-size: 25px">
-                    Переводчик<div class="btn ml-2 px-3 py-0 btn-outline-primary cursor-pointer" onClick="{$('#translator-for-copy').clone().removeAttr('id').insertAfter('#translator-for-copy')}">+</div>
-                </label>
-                @foreach( old('translators_id') ?? [-1] as $selectedTranslator )
-                <select class="form-control mb-2" name="translators_id[]" id="translator-for-copy">
-                    <option name="" value="-1">Отсутствует</option>
-                    @foreach( $translators as $translator )
-                        <option
-                            @if ($translator->translator_id == $selectedTranslator)
-                                selected
-                            @endif
-                            value="{{ $translator->translator_id }}">
-                            {{ $translator->fullname }}
-                            
-                        </option>
-                    @endforeach
-                </select>
+                <span class="" style="font-size: 25px">
+                    <span class="">Переводчик</span>
+                    <button
+                        type="button"
+                        class="btn btn-outline-primary px-3 py-0"
+                        data-toggle="modal"
+                        data-target="#modalAddTranslator">Создать</button>
+                </span>
+                @foreach( old('translators_id') ?? [0] as $selectedTranslator )
+                <div class="input-group mb-2" id="translator-for-copy">
+                    <select class="custom-select" name="translators_id[]">
+                        <option value="-1">Отсутствует</option>
+                        @foreach( $translators as $translator )
+                            <option
+                                @if ($translator->translator_id == $selectedTranslator)
+                                    selected
+                                @endif
+                                value="{{ $translator->translator_id }}">
+                                {{ $translator->fullname }}
+                    
+                            </option>
+                        @endforeach
+                    </select>
+                    @if ($loop->first)
+                    <div class="input-group-append" id="append-btn">
+                        <button
+                            class="btn btn-outline-secondary"
+                            onClick="{
+                                event.preventDefault()
+                                copy = $('#translator-for-copy')
+                                    .clone()
+                                    .removeAttr('id')
+                                copy.find('#append-btn').remove()
+                                copy.insertAfter('#translator-for-copy')
+                            }"
+                        >Ещё один</button>
+                    </div>
+                    @endif
+                </div>
                 @endforeach
             </div>
             <div class="row">
@@ -317,5 +361,60 @@
 
         </div> 
     </form>
+</div>
+
+<!-- Модалка добавления автора -->
+<div class="modal fade" id="modalAddAuthor" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Добавление автора</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="mb-3">
+                    <label class="mb-0">Фамилия Имя Отчество</label>
+                    <input
+                        id="modalAuthorFullName"
+                        type="text"
+                        class="form-control">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Отмена</button>
+                <button type="button" class="btn btn-primary">Добавить</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="modalAddTranslator" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Добавление переводчика</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="mb-3">
+                    <label class="mb-0">Фамилия Имя Отчество</label>
+                    <input
+                        id="modalTranlatorFullName"
+                        class="form-control"
+                        type="text">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Отмена</button>
+                <button
+                    type="button"
+                    class="btn btn-primary"
+                >Добавить</button>
+            </div>
+        </div>
+    </div>
 </div>
 @endsection
