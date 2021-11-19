@@ -8,6 +8,7 @@ use App\Http\Controllers\ContactsPageController;
 use App\Http\Controllers\ProfilePageController;
 use App\Http\Controllers\AuthPageController;
 use App\Http\Controllers\ManagePageController;
+use App\Http\Controllers\TranslatorsPageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -46,12 +47,25 @@ Route::prefix('/books')->group(function(){
 
 
 /** Авторы */
-Route::get(
-    '/authors', [ AuthorsPageController::class, 'index' ]
-)->name('authors');
-Route::get(
-    '/authors/{author}', [AuthorsPageController::class, 'authorPage']
-)->name('single_author');
+Route::prefix('/authors')->group(function(){
+    Route::get(
+        '/', [ AuthorsPageController::class, 'index' ]
+    )->name('authors');
+    Route::get(
+        '/{author}', [AuthorsPageController::class, 'authorPage']
+    )->name('single_author');
+
+    Route::group([ 'middleware' => ['auth', 'admin'] ], function(){
+        Route::post(
+            '/', [ AuthorsPageController::class, 'addAuthor' ]
+        )->name('authors');
+    });
+});
+
+Route::post(
+    '/translators',
+    [ TranslatorsPageController::class, 'addTranslator' ]
+);//->middleware([ 'auth', 'admin' ]);
 
 Route::get(
     '/contacts', [ ContactsPageController::class, 'index' ]

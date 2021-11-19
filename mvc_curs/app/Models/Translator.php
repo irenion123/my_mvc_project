@@ -8,6 +8,7 @@ class Translator extends Model
 {
     protected $table = 'translators';
     protected $primaryKey = 'translator_id';
+    public $timestamps = false;
 }
 
 

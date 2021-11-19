@@ -37,3 +37,23 @@ function deleteBook(bookId) {
             $('#book-view-'+bookId).remove();
         });
 }
+
+async function addAuthor(fullName) {
+    return fetch('/authors/', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ 'fullname': fullName })
+    }).then(response => response.json())
+}
+
+async function addTranslator(fullName) {
+    return fetch('/translators/', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ 'fullname': fullName })
+    }).then(response => response.json())
+}

@@ -65,14 +65,14 @@
                 </span>
                 @foreach( old('authors_id') ?? [0] as $selectedAuthor )
                 <div class="input-group mb-2" id="author-for-copy">
-                    <select class="@error('authors_id.0') is-invalid @enderror custom-select" name="authors_id[]">
+                    <select class="@error('authors_id.0') is-invalid @enderror custom-select" name="authors_id[]" id="authorChooser">
                         @foreach( $authors as $author )
                             <option
                                 @if ($author->author_id == $selectedAuthor)
                                     selected
                                 @endif
                                 value="{{ $author->author_id }}">
-                                {{ $author->fullname }}
+                                {{ $author->author_id }}. {{ $author->fullname }}
                             </option>
                         @endforeach
                     </select>
@@ -105,7 +105,7 @@
                 </span>
                 @foreach( old('translators_id') ?? [0] as $selectedTranslator )
                 <div class="input-group mb-2" id="translator-for-copy">
-                    <select class="custom-select" name="translators_id[]">
+                    <select class="custom-select" name="translators_id[]" id="translatorChooser">
                         <option value="-1">Отсутствует</option>
                         @foreach( $translators as $translator )
                             <option
@@ -113,8 +113,7 @@
                                     selected
                                 @endif
                                 value="{{ $translator->translator_id }}">
-                                {{ $translator->fullname }}
-                    
+                                {{ $translator->translator_id }}. {{ $translator->fullname }}
                             </option>
                         @endforeach
                     </select>
@@ -362,6 +361,36 @@
         </div> 
     </form>
 </div>
+<script>
+function modalAddAuthor()
+{
+    fullName = $('#modalAuthorFullName')[0].value.trim();
+    if (fullName.length < 1) return;
+    addAuthor(fullName)
+        .then( (data) => {
+        $('#modalAddAuthor').modal('hide');
+        $('#modalAuthorFullName')[0].value = ''
+        $('#authorChooser').append("<option value=" + data.id + ">" + data.id + ". " + fullName + "</option>")
+    })
+        .catch( (error) => {
+        console.log(error)
+    } )
+}
+function modalAddTranslator()
+{
+    fullName = $('#modalTranslatorFullname')[0].value.trim();
+    if (fullName.length < 1) return;
+    addTranslator(fullName)
+        .then( (data) => {
+        $('#modalAddTranslator').modal('hide');
+        $('#modalTranslatorFullname')[0].value = '';
+        $('#translatorChooser').append("<option value=" + data.id + ">" + data.id + ". " + fullName + "</option>")
+    })
+        .catch( (error) => {
+        console.log(error)
+    } )
+}
+</script>
 
 <!-- Модалка добавления автора -->
 <div class="modal fade" id="modalAddAuthor" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -384,7 +413,11 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Отмена</button>
-                <button type="button" class="btn btn-primary">Добавить</button>
+                <button
+                    type="button"
+                    class="btn btn-primary"
+                    onclick="modalAddAuthor()"
+                >Добавить</button>
             </div>
         </div>
     </div>
@@ -402,7 +435,7 @@
                 <div class="mb-3">
                     <label class="mb-0">Фамилия Имя Отчество</label>
                     <input
-                        id="modalTranlatorFullName"
+                        id="modalTranslatorFullname"
                         class="form-control"
                         type="text">
                 </div>
@@ -412,6 +445,7 @@
                 <button
                     type="button"
                     class="btn btn-primary"
+                    onclick="modalAddTranslator()"
                 >Добавить</button>
             </div>
         </div>
