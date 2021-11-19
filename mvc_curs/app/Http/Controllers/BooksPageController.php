@@ -94,8 +94,6 @@ class BooksPageController extends Controller
         $path = $image->storeAs('imgs/covers', $image->getClientOriginalName(), 'public');
 
         $book->title           = $validated['title'];
-        // $book->authors_id      = $validated['authors_id'];
-        // $book->translators_id  = $validated['translators_id'];
         $book->category_id     = $validated['category_id'];
         $book->cover_image     = 'imgs/covers/' . $image->getClientOriginalName();
         $book->seria_id        = ($request->input('seria_id') == -1) ? null : $request->input('seria_id');
@@ -116,6 +114,18 @@ class BooksPageController extends Controller
         $book->is_shown        = $request->input('is_shown', true);
 
         $book->save();
+
+        $authors = array_unique($request->input('authors_id'));
+        $translators = array_unique(array_filter(
+            $request->input('translators_id'),
+            function($item)
+            {
+                return $item != -1;
+            }
+        ));
+
+        $book->addAuthors($authors);
+        $book->addTranslators($translators);
 
         return redirect()->route('manage_books', '#');
     }

@@ -118,5 +118,29 @@ class Book extends Model
             [ ':user_id' => $userId, ':book_id' => $bookId ]
         );
     }
+
+    public function addAuthors(array $authors)
+    {
+        $values = [];
+        foreach ($authors as $_ => $authorId) {
+            $values[] = [
+                'book_id' => $this->book_id,
+                'author_id' => $authorId,
+            ];
+        }
+        DB::table('books_has_authors')->insert($values);
+    }
+
+    public function addTranslators(array $translators)
+    {
+        $values = [];
+        foreach ($translators as $_ => $translatorId) {
+            $values[] = [
+                'book_id' => $this->book_id,
+                'translator_id' => $translatorId,
+            ];
+        }
+        DB::table('books_has_translators')->insert($values);
+    }
 }
 
