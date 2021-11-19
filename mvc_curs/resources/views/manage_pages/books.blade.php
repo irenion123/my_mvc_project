@@ -198,10 +198,10 @@
             </div>
             <div class="row">
                 <div class="col-sm">
-                    <label class="mb-0" style="font-size: 25px">Путь к обложке</label>
+                    <label class="mb-0" style="font-size: 25px">Обложка</label>
                     <input
                         type="file"
-                        class="@error('cover_image') is-invalid @enderror mb-3 form-control"
+                        class="@error('cover_image') is-invalid @enderror form-control-file mb-3 p-0 py-1 pl-1 border rounded"
                         name="cover_image"
                         accept="*.*"
                     >
