@@ -18,6 +18,10 @@ html, body {
 .btnmar {
     margin-top: 0px; 
 }
+.btn-light {
+    background-color: var(--purple-dark);
+    color: #fff;
+}
 
 .custom-table td, .custom-table td {
     margin: 0px;
