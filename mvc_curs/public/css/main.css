@@ -39,9 +39,20 @@ html, body {
     color: #000;
 }
 
-.letter {
-    color: #F9D146;
-   
+.accent-header {
+    display: inline-block;
+}
+.accent-header::first-letter {
+    display: inline-block;
+    color: var(--purple-dark);
+    font-size: calc(var(--font-size) * 3.5);
+    font-style: italic;
+    font-weight: 100;
+}
+.accent-letter {
+    color: var(--purple-dark);
+    font-style: italic;
+
 }
 
 .cursor-pointer {

@@ -2,7 +2,11 @@
 
 @section('main')
 <div class="container mb-4 mt-4">
-    <h1>Читай. Люби. Развивайся.</h1>
+    <h1>
+        <span class="accent-header">Читай.</span>
+        <span class="accent-header">Вдохновляйся.</span>
+        <span class="accent-header">Учись.</span>
+    </h1>
     <!-- Слайдер -->
     <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
         <div class="carousel-inner">
@@ -29,7 +33,7 @@
 </div>
 <!-- Курсы -->
 <div class="container mb-4 mt-4">
-    <h1>Наши бестселлеры.</h1></br>
+    <h1 class="accent-header">Наши бестселлеры.</h1></br>
     <div class="row">
     @each('components.book', $bestSellers, 'book')
     </div>
