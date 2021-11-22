@@ -2,6 +2,9 @@
     --purple: #d0c0e8;
     --purple-light: #fff3ff;
     --purple-dark: #9f90b6;
+
+    --accent-font-face: Liberation Sans;
+    --font-size: 1rem;
 }
 
 * {
@@ -73,7 +76,7 @@ html, body {
 
 body {
     background-color: #fff;
-    font-family: 'Jura', sans-serif;
+    font-family: var(--accent-font-face), sans-serif;
     margin: 0;
     padding:0;
 }
@@ -81,7 +84,7 @@ body {
 header {
     background-color: #fff;
     color: #ffffff;
-    font-family: 'Jura', sans-serif;
+    font-family: var(--accent-font-face), sans-serif;
     box-shadow: 0 0.5rem 1rem rgba(0,0,0,.05), inset 0 -1px 0 rgba(0,0,0,.1);
     
 }
@@ -150,28 +153,16 @@ a, .tel {
 .name-prepod {
     font-size: 24px;
     color: black;  
-    font-family: 'Jura', sans-serif;
+    font-family: var(--accent-font-face), sans-serif;
 }
 .name-prepod:hover {
     text-decoration: none !important;
     color:black;
 }
 
-.contel {
-    font-size: 30px;
-    color: black;  
-    font-family: 'Jura', sans-serif;
-}
-
 .bt:focus {
     outline: 1px dotted;
     outline: 5px auto;
-}
-
-.sld {
-    font-size: 30px;
-    text-align: center;
-    font-family: 'Jura', sans-serif;
 }
 
 .hr {
@@ -189,7 +180,7 @@ a, .tel {
     text-decoration: none;
     font-size: 25px; 
     color: #000; 
-    font-family: 'Jura', bold;
+    font-family: var(--accent-font-face), bold;
     transition: all 0.3s ease-in;
 }
 
