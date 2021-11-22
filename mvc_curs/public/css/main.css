@@ -3,6 +3,8 @@
     --purple-light: #fff3ff;
     --purple-dark: #9f90b6;
 
+    --purple-accent: #9575cd;
+
     --accent-font-face: Liberation Sans;
     --font-size: 1rem;
 }
@@ -132,11 +134,11 @@ a, .tel {
 }
 
 .book-view hr {
-    background: linear-gradient(to right, transparent, #adadad, transparent);
+    background: linear-gradient(to right, transparent, #dadada, transparent);
     transition: background-position 200ms ease-out;  
 }
 .book-view:hover hr {
-    background: linear-gradient(to right, transparent, #f9d146, transparent);
+    background: linear-gradient(to right, transparent, var(--purple-accent), transparent);
 }
 
 .author-view .author-image {
