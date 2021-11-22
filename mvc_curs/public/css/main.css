@@ -1,3 +1,9 @@
+:root {
+    --purple: #d0c0e8;
+    --purple-light: #fff3ff;
+    --purple-dark: #9f90b6;
+}
+
 * {
     box-sizing: border-box;
 }
