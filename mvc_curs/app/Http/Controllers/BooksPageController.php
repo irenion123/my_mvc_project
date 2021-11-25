@@ -110,8 +110,8 @@ class BooksPageController extends Controller
         $book->publish_date    = $validated['publish_date'];
         $book->page_count      = $validated['page_count'];
         $book->description     = $validated['description'];
-        $book->is_bestseller   = $request->input('is_bestseller', false);
-        $book->is_shown        = $request->input('is_shown', true);
+        $book->is_bestseller   = empty($request->input('is_bestseller', null));
+        $book->is_shown        = empty($request->input('is_shown', true));
 
         $book->save();
 

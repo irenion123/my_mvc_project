@@ -340,7 +340,7 @@
                                 class="form-check-input"
                                 type="checkbox"
                                 id="shownCheck"
-                                {{ ($choosen_book->is_shown ?? old('is_shown')) ? 'checked' : '' }}
+                                {{ ($choosen_book->is_shown ?? old('is_shown')) ?? 'checked' }}
                         >
                         <label class="mb-0 pl-3 form-check-label" style="font-size: 25px" for="shownCheck">Отображать</label>
                     </div>
