@@ -17,14 +17,15 @@ class Book extends Model
     protected $primaryKey = 'book_id';
     public $timestamps = false;
 
-    public static function getBestSellers($count = 4)
+    public static function getBestSellers($count = 4, bool $showHidden = false)
     {
-        return self::query()
+        $query = self::query()
             ->where('is_bestseller', 1)
             ->join('books_has_authors', 'books.book_id', 'books_has_authors.book_id')
-            ->join('authors', 'authors.author_id', 'books_has_authors.author_id')
-            ->take($count)
-            ->get([ '*', 'authors.fullname as author_fullname' ]);
+            ->join('authors', 'authors.author_id', 'books_has_authors.author_id');
+        if (!$showHidden)
+            $query = $query->where('is_shown', true);
+        return $query->take($count)->get();
     }
 
     public static function getBooksById(array $ids)
@@ -34,11 +35,12 @@ class Book extends Model
             ->get();
     }
 
-    public static function getBookByCategoryId(int $categoryId)
+    public static function getBookByCategoryId(int $categoryId, bool $showHidden = false)
     {
-        return self::query()
-            ->where('category_id', $categoryId)
-            ->get();
+        $query = self::query()->where('category_id', $categoryId);
+        if (!$showHidden)
+            $query = $query->where('is_shown', true);
+        return $query->get();
     }
 
     public function getAuthorNameAttribute() {
