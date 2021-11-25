@@ -176,7 +176,7 @@ a, .tel {
     font-size: 25px; 
     color: #000; 
     font-family: var(--accent-font-face), bold;
-    transition: all 0.3s ease-in;
+    transition: all 0.175s ease-in-out;
 }
 
 .lnk-link:hover, .nav-link:hover {
@@ -186,7 +186,7 @@ a, .tel {
     border-radius: 4px;
     border: none;
     font-size: 25px;
-    background-color: #000;
+    background-color: var(--purple-dark);
 }
 
 footer {
