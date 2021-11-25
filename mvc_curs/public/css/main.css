@@ -5,12 +5,13 @@
 
     --purple-accent: #9575cd;
 
-    --accent-font-face: Liberation Sans;
+    --font-face: Liberation Sans;
     --font-size: 1rem;
 }
 
 * {
     box-sizing: border-box;
+    font-family: var(--font-face), sans-serif;
 }
 
 html, body {
@@ -75,8 +76,7 @@ html, body {
 }
 
 .author_text {
-    font-size: 15px;
-    font-family: 'Montserrat';
+    font-size: 18px;
 }
 
 .shadow-md {

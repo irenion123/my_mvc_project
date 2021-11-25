@@ -3,7 +3,7 @@
     <div class="book-image bg-white" style="background: url('{{ asset($book['cover_image']) }}'); background-size: contain; background-position: center;"></div>
         <hr style="width: 100%; border: none; height: 2px;">
         <span>{{ $book['title'] }}</span></br>
-        <span class="author_text">{{ $book['author_name'] }}</span>
+        <span class="author_text text-secondary">{{ $book['author_name'] }}</span>
     </a>
     <div class="mt-3">
         @if (Auth::check())
