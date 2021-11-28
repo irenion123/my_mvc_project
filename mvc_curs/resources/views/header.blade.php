@@ -36,32 +36,12 @@
                 </li>
 
                 @if (Auth::check() && Auth::user()['is_admin'] === 1)
-                <li class="dropdown">
+                <li class="lnk-item p-0">
                     <a
-                        class="dropdown-toggle lnk-link px-2"
-                        href="#"
-                        id="asortiDropdown"
-                        role="button"
-                        data-toggle="dropdown"
-                        aria-haspopup="true"
-                        aria-expanded="false"
+                        class="lnk-link px-2"
+                        href="{{ route('manage_books') }}"
                         >Администрирование</a
                     >
-                    <div class="dropdown-menu" aria-labelledby="asortiDropdown">
-                        <a class="dropdown-item" href="{{ route('manage_books') }}"
-                            >Добавить книгу</a
-                        >
-                        <a
-                            class="dropdown-item"
-                            href="view_add_author_transl.php"
-                            >Добавить автора/переводчика</a
-                        >
-                        <a
-                            class="dropdown-item"
-                            href="view_add_cat_cyc_seria_form.php"
-                            >Добавить категорию/цикл/серию/формат</a
-                        >
-                    </div>
                 </li>
                 @endif
             </ul>
