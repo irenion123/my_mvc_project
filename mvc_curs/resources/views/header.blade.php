@@ -3,9 +3,9 @@
         <!-- Логотип -->
         <a class="navbar-brand" href="{{ route('home') }}">
             <img
-                class="logo2"
-                src="{{ asset('icons/logo.png') }}"
-                style="width: 100px; margin: 0px; border: 0px"
+                class="p-2"
+                src="{{ asset('icons/logo_rectangle.png') }}"
+                style="width: 125px; margin: 0px; border: 0px"
             />
         </a>
         <button
@@ -65,7 +65,7 @@
                 </li>
                 @endif
             </ul>
-            <ul class="p-0">
+            <ul class="navbar-nav">
                 <li class="lnk-item">
                     @if (Auth::check())
                     <a class="lnk-link px-2" href="{{ route('profile') }}">Профиль</a>
