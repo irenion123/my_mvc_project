@@ -200,7 +200,7 @@
                     <label class="mb-0" style="font-size: 25px">Обложка</label>
                     <input
                         type="file"
-                        class="@error('cover_image') is-invalid @enderror form-control-file mb-3 p-0 py-1 pl-1 border rounded"
+                        class="@error('cover_image') is-invalid border-danger @enderror form-control-file mb-3 p-0 py-1 pl-1 border rounded"
                         name="cover_image"
                         accept="*.*"
                     >
