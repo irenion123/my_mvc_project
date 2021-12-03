@@ -3,7 +3,7 @@
 @section('main')
 <div class="container">
     <h1 class="mt-4 mb-1"><span class="letter">М</span>ои данные.</h1>
-    <div class="indent card pt-3" style="font-size:20px;">
+    <div class="card p-3" style="font-size:20px;">
         <p>Имя: {{ Auth::user()['username'] }}</p>
         <p>Дата рождения: {{ (new DateTime(Auth::user()['birthday']))->format('d.m.Y') }}</p>
         <p>Почта: {{ Auth::user()['email'] }}</p>
