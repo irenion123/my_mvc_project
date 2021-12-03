@@ -57,3 +57,13 @@ async function addTranslator(fullName) {
         body: JSON.stringify({ 'fullname': fullName })
     }).then(response => response.json())
 }
+
+async function addCategory(title, titleEng) {
+    return fetch('/categories/', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ 'title': title, 'title_eng': titleEng })
+    }).then(response => response.json())
+}

@@ -9,6 +9,10 @@ use App\Http\Controllers\ProfilePageController;
 use App\Http\Controllers\AuthPageController;
 use App\Http\Controllers\ManagePageController;
 use App\Http\Controllers\TranslatorsPageController;
+use App\Http\Controllers\CategoriesController;
+use App\Http\Controllers\SeriesController;
+use App\Http\Controllers\CyclesController;
+use App\Http\Controllers\FormatsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,6 +47,16 @@ Route::prefix('/books')->group(function(){
             ->name('delete_book');
     }
 );
+});
+
+Route::group([
+        'middleware' => ['auth', 'admin'],
+        'prefix' => 'categories'
+    ],
+    function(){
+        Route::post(
+            '/', [ CategoriesController::class, 'addCategory' ]
+    )->name('add_categories');
 });
 
 

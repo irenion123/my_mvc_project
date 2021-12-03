@@ -137,8 +137,15 @@
             </div>
             <div class="row">
                 <div class="col-sm d-flex flex-column justify-content-between">
-                    <label class="mb-0" style="font-size: 25px">Категория</label>
-                    <select class="mb-3 form-control" name="category_id">
+                    <span class="mb-0" style="font-size: 25px">
+                        <span class="">Категория</span>
+                        <button
+                            type="button"
+                            class="btn btn-outline-primary px-3 py-0"
+                            data-toggle="modal"
+                            data-target="#modalAddCategory">Создать</button>
+                    </span>
+                    <select class="mb-3 form-control" name="category_id" id="categoryChooser">
                         @foreach( $categories as $category )
                             <option
                                 @if(
@@ -390,6 +397,23 @@ function modalAddTranslator()
         console.log(error)
     } )
 }
+function modalAddCategory()
+{
+    title = $('#modalCategoryTitle')[0].value.trim();
+    titleEng = $('#modalCategoryTitleEng')[0].value.trim();
+    if (title.length < 1) return;
+    if (titleEng.length < 1) return;
+    addCategory(title, titleEng)
+        .then( (data) => {
+        $('#modalAddCategory').modal('hide');
+        $('#modalCategoryTitle')[0].value = '';
+        $('#modalCategoryTitleEng')[0].value = '';
+        $('#categoryChooser').append("<option value=" + data.id + ">" + title + "</option>")
+    })
+        .catch( (error) => {
+        console.log(error)
+    } )
+}
 </script>
 
 <!-- Модалка добавления автора -->
@@ -446,6 +470,42 @@ function modalAddTranslator()
                     type="button"
                     class="btn btn-primary"
                     onclick="modalAddTranslator()"
+                >Добавить</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="modalAddCategory" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Добавление категории</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="mb-3">
+                    <label class="mb-0">Название категории</label>
+                    <input
+                        id="modalCategoryTitle"
+                        class="form-control"
+                        type="text">
+                </div>
+                <div class="mb-3">
+                    <label class="mb-0">Название категории на английском</label>
+                    <input
+                        id="modalCategoryTitleEng"
+                        class="form-control"
+                        type="text">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Отмена</button>
+                <button
+                    type="button"
+                    class="btn btn-primary"
+                    onclick="modalAddCategory()"
                 >Добавить</button>
             </div>
         </div>
