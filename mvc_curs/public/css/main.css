@@ -5,7 +5,7 @@
 
     --purple-accent: #9575cd;
 
-    --font-face: Liberation Sans;
+    --font-face: Garamond;
     --font-size: 1rem;
 }
 
@@ -24,6 +24,7 @@ html, body {
 .btn-light {
     background-color: var(--purple-dark);
     color: #fff;
+    border-radius: 0px;
 }
 
 .custom-table td, .custom-table td {
@@ -183,7 +184,7 @@ a, .tel {
     text-decoration: none;
     color: #fff;
     /* padding: 4px; */
-    border-radius: 4px;
+    // border-radius: 4px;
     border: none;
     font-size: 25px;
     background-color: var(--purple-dark);
