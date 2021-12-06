@@ -67,3 +67,13 @@ async function addCategory(title, titleEng) {
         body: JSON.stringify({ 'title': title, 'title_eng': titleEng })
     }).then(response => response.json())
 }
+
+async function addCycle(title) {
+    return fetch('/cycles/', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ 'title': title })
+    }).then(response => response.json())
+}

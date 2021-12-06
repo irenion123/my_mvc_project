@@ -60,6 +60,16 @@ Route::group([
 });
 
 
+Route::group([ 
+        'middleware' => ['auth', 'admin'], 
+        'prefix' => 'cycles'
+    ], 
+    function(){
+        Route::post(
+            '/', [ CyclesController::class, 'addCycle' ]
+    )->name('add_cycles');
+});
+
 /** Авторы */
 Route::prefix('/authors')->group(function(){
     Route::get(

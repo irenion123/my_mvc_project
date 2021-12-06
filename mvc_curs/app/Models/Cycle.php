@@ -8,6 +8,7 @@ class Cycle extends Model
 {
     protected $table = 'cycles';
     protected $primaryKey = 'cycle_id';
+    public $timestamps = false;
 }
 
 

@@ -178,8 +178,15 @@
             </div>
             <div class="row">
                 <div class="col-sm">
-                    <label class="mb-0" style="font-size: 25px">Авторский цикл</label>
-                    <select class="mb-3 form-control" name="cycle_id">
+                    <span class="mb-0" style="font-size: 25px">
+                    <span class="">Авторский цикл</span>
+                        <button
+                            type="button"
+                            class="btn btn-outline-primary px-3 py-0"
+                            data-toggle="modal"
+                            data-target="#modalAddCycle">Создать</button>
+                    </span>
+                    <select class="mb-3 form-control" name="cycle_id" id="cycleChooser">
                         <option name="" value="-1">Отсутствует</option>
                         @foreach( $cycles as $cycle )
                             <option
@@ -414,6 +421,20 @@ function modalAddCategory()
         console.log(error)
     } )
 }
+function modalAddCycle()
+{
+    title = $('#modalCycleTitle')[0].value.trim();
+    if (title.length < 1) return;
+    addCycle(title)
+        .then( (data) => {
+        $('#modalAddCycle').modal('hide');
+        $('#modalCycleTitle')[0].value = '';
+        $('#cycleChooser').append("<option value=" + data.id + ">" + title + "</option>")
+    })
+        .catch( (error) => {
+        console.log(error)
+    } )
+}
 </script>
 
 <!-- Модалка добавления автора -->
@@ -506,6 +527,35 @@ function modalAddCategory()
                     type="button"
                     class="btn btn-primary"
                     onclick="modalAddCategory()"
+                >Добавить</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="modalAddCycle" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Добавление цикла</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="mb-3">
+                    <label class="mb-0">Название цикла</label>
+                    <input
+                        id="modalCycleTitle"
+                        class="form-control"
+                        type="text">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Отмена</button>
+                <button
+                    type="button"
+                    class="btn btn-primary"
+                    onclick="modalAddCycle()"
                 >Добавить</button>
             </div>
         </div>
