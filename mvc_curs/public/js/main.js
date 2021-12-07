@@ -87,3 +87,13 @@ async function addSeria(title) {
         body: JSON.stringify({ 'title': title })
     }).then(response => response.json())
 }
+
+async function addFormat(width, height) {
+    return fetch('/formats/', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ 'width': width, 'height': height })
+    }).then(response => response.json())
+}

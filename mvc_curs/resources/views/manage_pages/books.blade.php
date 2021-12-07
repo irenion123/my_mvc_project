@@ -294,8 +294,15 @@
             </div>
             <div class="row">
                 <div class="col-sm d-flex flex-column justify-content-between">
-                    <label class="mb-0" style="font-size: 25px">Формат</label>
-                    <select class="mb-3 form-control" name="format_id">
+                    <span class="mb-0" style="font-size: 25px">
+                        <span class="">Формат</span>
+                        <button
+                            type="button"
+                            class="btn btn-outline-primary px-3 py-0"
+                            data-toggle="modal"
+                            data-target="#modalAddFormat">Создать</button>
+                    </span>
+                    <select class="mb-3 form-control" name="format_id" id="formatChooser">
                         @foreach( $formats as $format )
                             <option value="{{ $format->format_id }}">{{ $format->name }}</option>
                         @endforeach
@@ -456,6 +463,23 @@ function modalAddCycle()
         console.log(error)
     } )
 }
+function modalAddFormat()
+{
+    width = $('#modalFormatWidth')[0].value.trim();
+    height = $('#modalFormatHeight')[0].value.trim();
+    if (width.length < 1) return;
+    if (height.length < 1) return;
+    addFormat(width, height)
+        .then( (data) => {
+        $('#modalAddFormat').modal('hide');
+        $('#modalFormatWidth')[0].value = '';
+        $('#modalFormatHeight')[0].value = '';
+        $('#formatChooser').append("<option value=" + data.id + ">" + width + " x " + height + "</option>")
+    })
+        .catch( (error) => {
+        console.log(error)
+    } )
+}
 </script>
 
 <!-- Модалка добавления автора -->
@@ -606,6 +630,42 @@ function modalAddCycle()
                     type="button"
                     class="btn btn-primary"
                     onclick="modalAddCycle()"
+                >Добавить</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="modalAddFormat" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Добавление формата</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="mb-3">
+                    <label class="mb-0">Введите ширину</label>
+                    <input
+                        id="modalFormatWidth"
+                        class="form-control"
+                        type="text">
+                </div>
+                <div class="mb-3">
+                    <label class="mb-0">Введите высоту</label>
+                    <input
+                        id="modalFormatHeight"
+                        class="form-control"
+                        type="text">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Отмена</button>
+                <button
+                    type="button"
+                    class="btn btn-primary"
+                    onclick="modalAddFormat()"
                 >Добавить</button>
             </div>
         </div>

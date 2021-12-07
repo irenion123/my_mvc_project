@@ -79,6 +79,16 @@ Route::group([
     )->name('add_cycles');
 });
 
+Route::group([
+        'middleware' => ['auth', 'admin'],
+        'prefix' => 'formats'
+    ],
+    function(){
+        Route::post(
+            '/', [ FormatsController::class, 'addFormat' ]
+    )->name('add_formats');
+});
+
 /** Авторы */
 Route::prefix('/authors')->group(function(){
     Route::get(
