@@ -160,8 +160,15 @@
                     </select>
                 </div>
                 <div class="col-sm d-flex flex-column justify-content-between">
-                    <label class="mb-0" style="font-size: 25px">Издательская серия</label>
-                    <select class="mb-3 form-control" name="seria_id">
+                    <span class="mb-0" style="font-size: 25px">
+                        <span class="">Издательская серия</span>
+                        <button
+                            type="button"
+                            class="btn btn-outline-primary px-3 py-0"
+                            data-toggle="modal"
+                            data-target="#modalAddSeria">Создать</button>
+                    </span>
+                    <select class="mb-3 form-control" name="seria_id" id="seriaChooser">
                         <option name="" value="-1">Отсутствует</option>
                         @foreach( $series as $seria )
                             <option
@@ -421,6 +428,20 @@ function modalAddCategory()
         console.log(error)
     } )
 }
+function modalAddSeria()
+{
+    title = $('#modalSeriaTitle')[0].value.trim();
+    if (title.length < 1) return;
+    addSeria(title)
+        .then( (data) => {
+        $('#modalAddSeria').modal('hide');
+        $('#modalSeriaTitle')[0].value = '';
+        $('#seriaChooser').append("<option value=" + data.id + ">" + title + "</option>")
+    })
+        .catch( (error) => {
+        console.log(error)
+    } )
+}
 function modalAddCycle()
 {
     title = $('#modalCycleTitle')[0].value.trim();
@@ -527,6 +548,35 @@ function modalAddCycle()
                     type="button"
                     class="btn btn-primary"
                     onclick="modalAddCategory()"
+                >Добавить</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="modalAddSeria" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Добавление серии</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="mb-3">
+                    <label class="mb-0">Название серии</label>
+                    <input
+                        id="modalSeriaTitle"
+                        class="form-control"
+                        type="text">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Отмена</button>
+                <button
+                    type="button"
+                    class="btn btn-primary"
+                    onclick="modalAddSeria()"
                 >Добавить</button>
             </div>
         </div>

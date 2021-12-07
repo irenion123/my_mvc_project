@@ -8,6 +8,7 @@ class Seria extends Model
 {
     protected $table = 'series';
     protected $primaryKey = 'seria_id';
+    public $timestamps = false;
 
 }
 

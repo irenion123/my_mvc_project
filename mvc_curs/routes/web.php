@@ -59,6 +59,15 @@ Route::group([
     )->name('add_categories');
 });
 
+Route::group([ 
+        'middleware' => ['auth', 'admin'], 
+        'prefix' => 'series'
+    ], 
+    function(){
+        Route::post(
+            '/', [ SeriesController::class, 'addSeria' ]
+    )->name('add_series');
+});
 
 Route::group([ 
         'middleware' => ['auth', 'admin'], 

@@ -77,3 +77,13 @@ async function addCycle(title) {
         body: JSON.stringify({ 'title': title })
     }).then(response => response.json())
 }
+
+async function addSeria(title) {
+    return fetch('/series/', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ 'title': title })
+    }).then(response => response.json())
+}
