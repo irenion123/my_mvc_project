@@ -108,7 +108,7 @@ Route::prefix('/authors')->group(function(){
 Route::post(
     '/translators',
     [ TranslatorsPageController::class, 'addTranslator' ]
-);//->middleware([ 'auth', 'admin' ]);
+)->middleware([ 'auth', 'admin' ]);
 
 Route::get(
     '/contacts', [ ContactsPageController::class, 'index' ]
