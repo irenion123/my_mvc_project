@@ -398,7 +398,7 @@ function modalAddAuthor()
         .then( (data) => {
         $('#modalAddAuthor').modal('hide');
         $('#modalAuthorFullName')[0].value = ''
-        $('#authorChooser').append("<option value=" + data.id + ">" + data.id + ". " + fullName + "</option>")
+        $('#authorChooser').append("<option value=" + data.id + " selected>" + data.id + ". " + fullName + "</option>")
     })
         .catch( (error) => {
         console.log(error)
@@ -412,7 +412,7 @@ function modalAddTranslator()
         .then( (data) => {
         $('#modalAddTranslator').modal('hide');
         $('#modalTranslatorFullname')[0].value = '';
-        $('#translatorChooser').append("<option value=" + data.id + ">" + data.id + ". " + fullName + "</option>")
+        $('#translatorChooser').append("<option value=" + data.id + " selected>" + data.id + ". " + fullName + "</option>")
     })
         .catch( (error) => {
         console.log(error)
@@ -429,7 +429,7 @@ function modalAddCategory()
         $('#modalAddCategory').modal('hide');
         $('#modalCategoryTitle')[0].value = '';
         $('#modalCategoryTitleEng')[0].value = '';
-        $('#categoryChooser').append("<option value=" + data.id + ">" + title + "</option>")
+        $('#categoryChooser').append("<option value=" + data.id + " selected>" + title + "</option>")
     })
         .catch( (error) => {
         console.log(error)
@@ -443,7 +443,7 @@ function modalAddSeria()
         .then( (data) => {
         $('#modalAddSeria').modal('hide');
         $('#modalSeriaTitle')[0].value = '';
-        $('#seriaChooser').append("<option value=" + data.id + ">" + title + "</option>")
+        $('#seriaChooser').append("<option value=" + data.id + " selected>" + title + "</option>")
     })
         .catch( (error) => {
         console.log(error)
@@ -457,7 +457,7 @@ function modalAddCycle()
         .then( (data) => {
         $('#modalAddCycle').modal('hide');
         $('#modalCycleTitle')[0].value = '';
-        $('#cycleChooser').append("<option value=" + data.id + ">" + title + "</option>")
+        $('#cycleChooser').append("<option value=" + data.id + " selected>" + title + "</option>")
     })
         .catch( (error) => {
         console.log(error)
@@ -474,7 +474,7 @@ function modalAddFormat()
         $('#modalAddFormat').modal('hide');
         $('#modalFormatWidth')[0].value = '';
         $('#modalFormatHeight')[0].value = '';
-        $('#formatChooser').append("<option value=" + data.id + ">" + width + " x " + height + "</option>")
+        $('#formatChooser').append("<option value=" + data.id + " selected>" + width + " x " + height + "</option>")
     })
         .catch( (error) => {
         console.log(error)
