@@ -51,43 +51,25 @@ Route::prefix('/books')->group(function(){
 
 Route::group([
         'middleware' => ['auth', 'admin'],
-        'prefix' => 'categories'
     ],
     function(){
         Route::post(
-            '/', [ CategoriesController::class, 'addCategory' ]
-    )->name('add_categories');
-});
-
-Route::group([ 
-        'middleware' => ['auth', 'admin'], 
-        'prefix' => 'series'
-    ], 
-    function(){
+            '/translators', [ TranslatorsPageController::class, 'addTranslator' ]
+        )->name('add_translators');
         Route::post(
-            '/', [ SeriesController::class, 'addSeria' ]
-    )->name('add_series');
-});
-
-Route::group([ 
-        'middleware' => ['auth', 'admin'], 
-        'prefix' => 'cycles'
-    ], 
-    function(){
+            '/categories', [ CategoriesController::class, 'addCategory' ]
+        )->name('add_categories');
         Route::post(
-            '/', [ CyclesController::class, 'addCycle' ]
-    )->name('add_cycles');
-});
-
-Route::group([
-        'middleware' => ['auth', 'admin'],
-        'prefix' => 'formats'
-    ],
-    function(){
+            '/series', [ SeriesController::class, 'addSeria' ]
+        )->name('add_series');
         Route::post(
-            '/', [ FormatsController::class, 'addFormat' ]
-    )->name('add_formats');
-});
+            '/cycles', [ CyclesController::class, 'addCycle' ]
+        )->name('add_cycles');
+        Route::post(
+            '/formats', [ FormatsController::class, 'addFormat' ]
+        )->name('add_formats');
+    }
+);
 
 /** Авторы */
 Route::prefix('/authors')->group(function(){
@@ -104,11 +86,6 @@ Route::prefix('/authors')->group(function(){
         )->name('authors');
     });
 });
-
-Route::post(
-    '/translators',
-    [ TranslatorsPageController::class, 'addTranslator' ]
-)->middleware([ 'auth', 'admin' ]);
 
 Route::get(
     '/contacts', [ ContactsPageController::class, 'index' ]
