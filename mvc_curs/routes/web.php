@@ -63,9 +63,6 @@ Route::group([
             '/series', [ SeriesController::class, 'addSeria' ]
         )->name('add_series');
         Route::post(
-            '/cycles', [ CyclesController::class, 'addCycle' ]
-        )->name('add_cycles');
-        Route::post(
             '/formats', [ FormatsController::class, 'addFormat' ]
         )->name('add_formats');
     }

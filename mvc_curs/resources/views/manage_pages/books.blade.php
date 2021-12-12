@@ -454,10 +454,22 @@ function modalAddCycle()
     title = $('#modalCycleTitle')[0].value.trim();
     if (title.length < 1) return;
     addCycle(title)
-        .then( (data) => {
-        $('#modalAddCycle').modal('hide');
-        $('#modalCycleTitle')[0].value = '';
-        $('#cycleChooser').append("<option value=" + data.id + " selected>" + title + "</option>")
+        .then( (response) => {
+        if (response.status) {
+            $('#modalAddCycle').modal('hide');
+            $('#modalCycleTitle')[0].value = '';
+            $('#cycleChooser').append("<option value=" + response.data.id + " selected>" + title + "</option>");
+            $('#modalAddCycleErrors').addClass('d-none');
+        } else {
+            console.error(response);
+            $('#modalAddCycleErrors').removeClass('d-none');
+            $('#modalAddCycleErrors').empty();
+            for (var k in response.errors) {
+                $('#modalAddCycleErrors').append(
+                    '<span>' + response.errors[k] + '</span>'
+                )
+            }
+        }
     })
         .catch( (error) => {
         console.log(error)
@@ -617,6 +629,7 @@ function modalAddFormat()
             </div>
             <div class="modal-body">
                 <div class="mb-3">
+                    <div id="modalAddCycleErrors" class="alert alert-danger d-none"></div>
                     <label class="mb-0">Название цикла</label>
                     <input
                         id="modalCycleTitle"

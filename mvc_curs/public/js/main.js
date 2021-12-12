@@ -69,7 +69,7 @@ async function addCategory(title, titleEng) {
 }
 
 async function addCycle(title) {
-    return fetch('/cycles/', {
+    return fetch('/api/cycles/', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
