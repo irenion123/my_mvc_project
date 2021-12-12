@@ -14,6 +14,10 @@ class CyclesController extends Controller
             'title' => 'required|min:3|unique:cycles'
         ]);
 
+        $validation->setAttributeNames([
+            'title' => '"Название цикла"'
+        ]);
+
         if ($validation->fails()) {
             return $this->jsonError($validation->errors());
         }
