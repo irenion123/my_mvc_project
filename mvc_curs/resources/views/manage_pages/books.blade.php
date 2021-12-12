@@ -464,7 +464,6 @@ function modalAddSeria()
 function modalAddCycle()
 {
     title = $('#modalCycleTitle')[0].value.trim();
-    if (title.length < 1) return;
     addCycle(title)
         .then( (response) => {
         if (response.status) {
