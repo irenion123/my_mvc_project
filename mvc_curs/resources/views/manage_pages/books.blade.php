@@ -438,12 +438,24 @@ function modalAddCategory()
 function modalAddSeria()
 {
     title = $('#modalSeriaTitle')[0].value.trim();
-    if (title.length < 1) return;
     addSeria(title)
-        .then( (data) => {
-        $('#modalAddSeria').modal('hide');
-        $('#modalSeriaTitle')[0].value = '';
-        $('#seriaChooser').append("<option value=" + data.id + " selected>" + title + "</option>")
+        .then( (response) => {
+        if (response.data) {
+            $('#modalAddSeria').modal('hide');
+            $('#modalSeriaTitle')[0].value = '';
+            $('#seriaChooser').append("<option value=" + response.data.id + " selected>" + title + "</option>")
+            $('#modalAddSeriesErrors').addClass('d-none');
+            $('#modalAddSeriesErrors').empty();
+        } else {
+            console.error(response);
+            $('#modalAddSeriesErrors').removeClass('d-none');
+            $('#modalAddSeriesErrors').empty();
+            for (var k in response.errors) {
+                $('#modalAddSeriesErrors').append(
+                    '<span>' + response.errors[k] + '</span>'
+                )
+            }
+        }
     })
         .catch( (error) => {
         console.log(error)
@@ -600,6 +612,7 @@ function modalAddFormat()
             </div>
             <div class="modal-body">
                 <div class="mb-3">
+                    <div id="modalAddSeriesErrors" class="alert alert-danger d-none"></div>
                     <label class="mb-0">Название серии</label>
                     <input
                         id="modalSeriaTitle"

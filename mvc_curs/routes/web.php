@@ -60,9 +60,6 @@ Route::group([
             '/categories', [ CategoriesController::class, 'addCategory' ]
         )->name('add_categories');
         Route::post(
-            '/series', [ SeriesController::class, 'addSeria' ]
-        )->name('add_series');
-        Route::post(
             '/formats', [ FormatsController::class, 'addFormat' ]
         )->name('add_formats');
     }

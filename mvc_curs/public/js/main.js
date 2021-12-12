@@ -79,7 +79,7 @@ async function addCycle(title) {
 }
 
 async function addSeria(title) {
-    return fetch('/series/', {
+    return fetch('/api/series/', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'

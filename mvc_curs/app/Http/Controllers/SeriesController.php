@@ -3,21 +3,43 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 use App\Models\Seria;
 
 class SeriesController extends Controller
 {
-    public function addSeria(Request $request)
+
+    public function store(Request $request)
     {
-        $title = $request->input('title');
-        if ($title === null) {
-            return json_encode( ['result' => false] );
+        $validation = Validator::make($request->all(), [
+            'title' => 'required|min:3|unique:series'
+        ]);
+
+        $validation->setAttributeNames([
+            'title' => '"Название серии"'
+        ]);
+
+        if ($validation->fails()) {
+            return $this->jsonError($validation->errors());
         }
 
+        $validated = $validation->validated();
+
         $seria = new Seria();
-        $seria->title = $title;
+        $seria->title = $validated['title'];
         $seria->save();
 
-        return json_encode([ 'result' => true, 'id' => $seria->seria_id ]);
+        return $this->jsonSuccess([ 'id' => $seria->seria_id ]);
     }
+
+    public function index()
+    {
+        return Seria::all();
+    }
+
+    public function show(Seria $seria)
+    {
+        return $seria;
+    }
+
 }
