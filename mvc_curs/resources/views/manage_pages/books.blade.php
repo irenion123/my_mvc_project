@@ -422,14 +422,25 @@ function modalAddCategory()
 {
     title = $('#modalCategoryTitle')[0].value.trim();
     titleEng = $('#modalCategoryTitleEng')[0].value.trim();
-    if (title.length < 1) return;
-    if (titleEng.length < 1) return;
     addCategory(title, titleEng)
-        .then( (data) => {
-        $('#modalAddCategory').modal('hide');
-        $('#modalCategoryTitle')[0].value = '';
-        $('#modalCategoryTitleEng')[0].value = '';
-        $('#categoryChooser').append("<option value=" + data.id + " selected>" + title + "</option>")
+        .then( (response) => {
+        if (response.data) {
+            $('#modalAddCategory').modal('hide');
+            $('#modalCategoryTitle')[0].value = '';
+            $('#modalCategoryTitleEng')[0].value = '';
+            $('#categoryChooser').append("<option value=" + response.id + " selected>" + title + "</option>")
+            $('#modalAddCategoryErrors').addClass('d-none');
+            $('#modalAddCategoryErrors').empty();
+        } else {
+            console.error(response);
+            $('#modalAddCategoryErrors').removeClass('d-none');
+            $('#modalAddCategoryErrors').empty();
+            for (var k in response.errors) {
+                $('#modalAddCategoryErrors').append(
+                    '<span>' + response.errors[k] + '</span>'
+                )
+            }
+        }  
     })
         .catch( (error) => {
         console.log(error)
@@ -575,6 +586,7 @@ function modalAddFormat()
             </div>
             <div class="modal-body">
                 <div class="mb-3">
+                    <div id="modalAddCategoryErrors" class="alert alert-danger d-none"></div>
                     <label class="mb-0">Название категории</label>
                     <input
                         id="modalCategoryTitle"

@@ -57,9 +57,6 @@ Route::group([
             '/translators', [ TranslatorsPageController::class, 'addTranslator' ]
         )->name('add_translators');
         Route::post(
-            '/categories', [ CategoriesController::class, 'addCategory' ]
-        )->name('add_categories');
-        Route::post(
             '/formats', [ FormatsController::class, 'addFormat' ]
         )->name('add_formats');
     }
