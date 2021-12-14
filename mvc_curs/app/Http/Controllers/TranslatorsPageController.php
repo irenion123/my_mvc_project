@@ -2,31 +2,43 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Translator;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use App\Models\Translator;
+
 
 class TranslatorsPageController extends Controller
 {
-
-    // Страницы переводчиков пока нет
-    // public function index()
-    // {
-    // }
-
-    public function addTranslator(Request $request)
+    public function store(Request $request)
     {
-        $fullname = $request->input('fullname');
-        if ($fullname === null) {
-            return json_encode( ['result' => false] );
+        $validation = Validator::make($request->all(), [
+            'fullname' => 'required'
+        ]);
+
+        $validation->setAttributeNames([
+            'fullname' => '"Фамилия Имя Отчество"'
+        ]);
+
+        if ($validation->fails()) {
+            return $this->jsonError($validation->errors());
         }
 
+        $validated = $validation->validated();
+
         $translator = new Translator();
-        $translator->fullname = $fullname;
+        $translator->fullname = $validated['fullname'];
         $translator->save();
 
-        return json_encode(
-            [ 'result' => true, 'id' => $translator->translator_id ]
-        );
+        return $this->jsonSuccess([ 'id' => $translator->translator_id ]);
+    }
+    public function index()
+    {
+        return Translator::all();
+    }
+
+    public function show(Translator $translator)
+    {
+        return $translator;
     }
 
 }

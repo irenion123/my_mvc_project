@@ -406,13 +406,26 @@ function modalAddAuthor()
 }
 function modalAddTranslator()
 {
-    fullName = $('#modalTranslatorFullname')[0].value.trim();
-    if (fullName.length < 1) return;
-    addTranslator(fullName)
-        .then( (data) => {
-        $('#modalAddTranslator').modal('hide');
-        $('#modalTranslatorFullname')[0].value = '';
-        $('#translatorChooser').append("<option value=" + data.id + " selected>" + data.id + ". " + fullName + "</option>")
+    fullname = $('#modalTranslatorFullname')[0].value.trim();
+    addTranslator(fullname)
+        .then( (response) => {
+        if (response.data) {
+            $('#modalAddTranslator').modal('hide');
+            $('#modalTranslatorFullname')[0].value = '';
+            $('#translatorChooser').append("<option value=" + response.data.id + " selected>" + response.data.id + ". " + fullname + "</option>")
+            $('#modalAddTranslatorErrors').addClass('d-none');
+            $('#modalAddTranslatorErrors').empty();
+        } else {
+            console.error(response);
+            $('#modalAddTranslatorErrors').removeClass('d-none');
+            $('#modalAddTranslatorErrors').empty();
+            for (var k in response.errors) {
+                $('#modalAddTranslatorErrors').append(
+                    '<span>' + response.errors[k] + '</span>'
+                )
+            }
+        } 
+        
     })
         .catch( (error) => {
         console.log(error)
@@ -428,7 +441,7 @@ function modalAddCategory()
             $('#modalAddCategory').modal('hide');
             $('#modalCategoryTitle')[0].value = '';
             $('#modalCategoryTitleEng')[0].value = '';
-            $('#categoryChooser').append("<option value=" + response.id + " selected>" + title + "</option>")
+            $('#categoryChooser').append("<option value=" + response.data.id + " selected>" + title + "</option>")
             $('#modalAddCategoryErrors').addClass('d-none');
             $('#modalAddCategoryErrors').empty();
         } else {
@@ -557,6 +570,7 @@ function modalAddFormat()
             </div>
             <div class="modal-body">
                 <div class="mb-3">
+                    <div id="modalAddTranslatorErrors" class="alert alert-danger d-none"></div>
                     <label class="mb-0">Фамилия Имя Отчество</label>
                     <input
                         id="modalTranslatorFullname"

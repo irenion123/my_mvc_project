@@ -48,13 +48,13 @@ async function addAuthor(fullName) {
     }).then(response => response.json())
 }
 
-async function addTranslator(fullName) {
-    return fetch('/translators/', {
+async function addTranslator(fullname) {
+    return fetch('/api/translators/', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ 'fullname': fullName })
+        body: JSON.stringify({ 'fullname': fullname })
     }).then(response => response.json())
 }
 

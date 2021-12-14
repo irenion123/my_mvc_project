@@ -54,9 +54,6 @@ Route::group([
     ],
     function(){
         Route::post(
-            '/translators', [ TranslatorsPageController::class, 'addTranslator' ]
-        )->name('add_translators');
-        Route::post(
             '/formats', [ FormatsController::class, 'addFormat' ]
         )->name('add_formats');
     }
