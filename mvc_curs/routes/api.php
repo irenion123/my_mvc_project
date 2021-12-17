@@ -3,11 +3,15 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\BooksController;
 use App\Http\Controllers\CyclesController;
 use App\Http\Controllers\SeriesController;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\TranslatorsPageController;
 use App\Http\Controllers\FormatsController;
+
+Route::apiResource('books', BooksController::class)
+    ->only('index', 'store', 'show');
 
 Route::apiResource('cycles', CyclesController::class)
     ->only('index', 'store', 'show');
