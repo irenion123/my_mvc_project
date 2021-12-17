@@ -11,8 +11,8 @@ class FormatsController extends Controller
     public function store(Request $request)
     {
         $validation = Validator::make($request->all(), [
-            'width' => 'required',
-            'height' => 'required'
+            'width' => 'required|numeric|gte:1',
+            'height' => 'required|numeric|gte:1'
         ]);
 
         $validation->setAttributeNames([
