@@ -514,14 +514,24 @@ function modalAddFormat()
 {
     width = $('#modalFormatWidth')[0].value.trim();
     height = $('#modalFormatHeight')[0].value.trim();
-    if (width.length < 1) return;
-    if (height.length < 1) return;
     addFormat(width, height)
-        .then( (data) => {
-        $('#modalAddFormat').modal('hide');
-        $('#modalFormatWidth')[0].value = '';
-        $('#modalFormatHeight')[0].value = '';
-        $('#formatChooser').append("<option value=" + data.id + " selected>" + width + " x " + height + "</option>")
+        .then( (response) => {
+        if (response.status) {
+            $('#modalAddFormat').modal('hide');
+            $('#modalFormatWidth')[0].value = '';
+            $('#modalFormatHeight')[0].value = '';
+            $('#formatChooser').append("<option value=" + response.data.id + " selected>" + width + " x " + height + "</option>");
+            $('#modalAddFormatErrors').addClass('d-none');
+        } else {
+            console.error(response);
+            $('#modalAddFormatErrors').removeClass('d-none');
+            $('#modalAddFormatErrors').empty();
+            for (var k in response.errors) {
+                $('#modalAddFormatErrors').append(
+                    '<span>' + response.errors[k] + '</span>'
+                )
+            }
+        } 
     })
         .catch( (error) => {
         console.log(error)
@@ -697,6 +707,7 @@ function modalAddFormat()
             </div>
             <div class="modal-body">
                 <div class="mb-3">
+                    <div id="modalAddFormatErrors" class="alert alert-danger d-none"></div>
                     <label class="mb-0">Введите ширину</label>
                     <input
                         id="modalFormatWidth"

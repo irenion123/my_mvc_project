@@ -89,7 +89,7 @@ async function addSeria(title) {
 }
 
 async function addFormat(width, height) {
-    return fetch('/formats/', {
+    return fetch('/api/formats/', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'

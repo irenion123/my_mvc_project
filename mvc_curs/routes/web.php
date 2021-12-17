@@ -49,16 +49,6 @@ Route::prefix('/books')->group(function(){
 );
 });
 
-Route::group([
-        'middleware' => ['auth', 'admin'],
-    ],
-    function(){
-        Route::post(
-            '/formats', [ FormatsController::class, 'addFormat' ]
-        )->name('add_formats');
-    }
-);
-
 /** Авторы */
 Route::prefix('/authors')->group(function(){
     Route::get(

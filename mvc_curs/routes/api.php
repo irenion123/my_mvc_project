@@ -7,6 +7,7 @@ use App\Http\Controllers\CyclesController;
 use App\Http\Controllers\SeriesController;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\TranslatorsPageController;
+use App\Http\Controllers\FormatsController;
 
 Route::apiResource('cycles', CyclesController::class)
     ->only('index', 'store', 'show');
@@ -21,4 +22,8 @@ Route::apiResource('categories', CategoriesController::class)
 
 Route::apiResource('translators', TranslatorsPageController::class)
     ->parameter('translators', 'translator')
+    ->only('index', 'store', 'show');
+
+Route::apiResource('formats', FormatsController::class)
+    ->parameter('formats', 'format')
     ->only('index', 'store', 'show');

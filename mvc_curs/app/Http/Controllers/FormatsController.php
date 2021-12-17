@@ -3,26 +3,43 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 use App\Models\Format;
 
 class FormatsController extends Controller
 {
-    public function addFormat(Request $request)
+    public function store(Request $request)
     {
-        $width = $request->input('width');
-        $height = $request->input('height');
-        if ($width === null) {
-            return json_encode( ['result' => false] );
+        $validation = Validator::make($request->all(), [
+            'width' => 'required',
+            'height' => 'required'
+        ]);
+
+        $validation->setAttributeNames([
+            'width' => '"Ширина"',
+            'height' => '"Высота"'
+        ]);
+
+        if ($validation->fails()) {
+            return $this->jsonError($validation->errors());
         }
-        if ($height === null) {
-            return json_encode( ['result' => false] );
-        }
+
+        $validated = $validation->validated();
 
         $format = new Format();
-        $format->width = $width;
-        $format->height = $height;
+        $format->width = $validated['width'];
+        $format->height = $validated['height'];
         $format->save();
 
-        return json_encode([ 'result' => true, 'id' => $format->format_id ]);
+        return $this->jsonSuccess([ 'id' => $format->format_id ]);
+    }
+    public function index()
+    {
+        return Format::all();
+    }
+
+    public function show(Format $format)
+    {
+        return $format;
     }
 }
