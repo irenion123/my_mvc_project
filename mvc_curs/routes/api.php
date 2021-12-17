@@ -17,13 +17,10 @@ Route::apiResource('series', SeriesController::class)
     ->only('index', 'store', 'show');
 
 Route::apiResource('categories', CategoriesController::class)
-    ->parameter('categories', 'category')
     ->only('index', 'store', 'show');
 
 Route::apiResource('translators', TranslatorsPageController::class)
-    ->parameter('translators', 'translator')
     ->only('index', 'store', 'show');
 
 Route::apiResource('formats', FormatsController::class)
-    ->parameter('formats', 'format')
     ->only('index', 'store', 'show');
